@@ -57,11 +57,7 @@ const styles = StyleSheet.create({
 	}
 });
 
-class Manage extends Component {
-	static navigationOptions = {
-		tabBarIcon: ({ tintColor }) => <Icon color={tintColor} name='settings' size={30} />
-	};
-
+class Prospects extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -141,4 +137,4 @@ const mapDispatchToProps = dispatch => ({
 	}
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Manage);
+export default connect(mapStateToProps, mapDispatchToProps)(Prospects);

@@ -17,7 +17,7 @@ import session from '../services/session.service';
 
 import styles, { constants } from '../styles';
 
-class Login extends Component {
+class Home extends Component {
 	constructor(props) {
 		super(props);
 
@@ -213,4 +213,4 @@ const mapDispatchToProps = dispatch => ({
 	setMode: mode => { dispatch({ type: 'SET_MODE', mode: mode }); }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

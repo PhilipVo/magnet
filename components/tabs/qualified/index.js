@@ -69,11 +69,7 @@ const styles = StyleSheet.create({
 	}
 });
 
-class Feed extends Component {
-	static navigationOptions = {
-		tabBarIcon: ({ tintColor }) => <Icon color={tintColor} name='clock' size={30} />
-	};
-
+class Qualified extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -194,4 +190,4 @@ class Feed extends Component {
 	}
 }
 
-export default connect()(Feed);
+export default connect()(Qualified);

@@ -2,11 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
+import Home from '../components/home';
 import Login from '../components/login';
 
 const Navigator = StackNavigator(
 	{
-		Login: { screen: Login },
+		Home: { screen: Home },
+		Login: { screen: Login }
 	},
 	{
 		cardStyle: { backgroundColor: 'transparent' },

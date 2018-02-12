@@ -2,21 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, TabNavigator } from 'react-navigation';
 
-import Add from '../components/tabs/add';
-import Feed from '../components/tabs/feed';
-import Manage from '../components/tabs/manage';
+import Prospects from '../components/tabs/prospects';
+import Qualified from '../components/tabs/qualified';
 
 const Navigator = TabNavigator(
 	{
-		Add: { screen: Add },
-		Feed: { screen: Feed },
-		Manage: { screen: Manage },
+		Prospects: { screen: Prospects },
+		Qualified: { screen: Qualified }
 	},
 	{
 		headerMode: 'none',
-		initialRouteName: 'Feed',
-		// navigationOptions: { tabBarVisible: false }
-		order: ['Feed', 'Add', 'Manage'],
+		initialRouteName: 'Prospects',
+		navigationOptions: { tabBarVisible: false },
+		order: ['Qualified', 'Prospects'],
 		tabBarOptions: { showLabel: false }
 	}
 );
