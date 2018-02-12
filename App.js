@@ -1,58 +1,70 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
+	AsyncStorage,
+	Dimensions,
+	Image,
+	StatusBar,
+	StyleSheet,
+	View
 } from 'react-native';
+import { connect } from 'react-redux';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
-  }
-}
+import session from './services/session.service';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+	background: {
+		height: Dimensions.get('window').height,
+		position: 'absolute',
+		width: Dimensions.get('window').width
+	}
 });
+
+class App extends Component {
+	componentDidMount() {
+		AsyncStorage.getItem('magnetToken')
+			.then(magnetToken => {
+				if (magnetToken) {
+					session.setSession(magnetToken)
+						.then(() => this.props.setMode(1))
+						.catch(() => { });
+				} else this.props.setMode(2);
+			}).catch(() => { });
+	}
+
+	render() {
+		let Navigator = null;
+		if (this.props.mode === 1) {
+			const TabsNavigator = require('./navigators/tabs.navigator').TabsNavigator;
+			Navigator = <TabsNavigator />
+		} else if (this.props.mode === 2) {
+			const AppNavigator = require('./navigators/app.navigator').AppNavigator;
+			Navigator = <AppNavigator />
+		} else if (this.props.mode === 3) {
+			const FTUENavigator = require('./navigators/ftue.navigator').FTUENavigator;
+			Navigator = <FTUENavigator />
+		}
+
+		return (
+			<View style={{ flex: 1 }}>
+				{
+					this.props.mode !== 1 &&
+					<Image
+						source={require('./assets/images/background0.png')}
+						style={styles.background} />
+				}
+				<StatusBar barStyle='light-content' />
+				{Navigator}
+			</View>
+		);
+	}
+}
+
+const mapStateToProps = state => ({
+	mode: state.mode
+});
+
+const mapDispatchToProps = dispatch => ({
+	setMode: mode => dispatch({ type: 'SET_MODE', mode: mode })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);;
