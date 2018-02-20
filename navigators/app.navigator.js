@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
-import Home from '../components/home';
+import Forgot from '../components/forgot';
 import Login from '../components/login';
 
 const Navigator = StackNavigator(
 	{
-		Home: { screen: Home },
+		Forgot: { screen: Forgot },
 		Login: { screen: Login }
 	},
 	{

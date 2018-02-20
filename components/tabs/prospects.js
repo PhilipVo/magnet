@@ -13,8 +13,8 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import FAIcon from 'react-native-vector-icons/dist/FontAwesome';
 
-import http from '../../../services/http.service';
-import session from '../../../services/session.service';
+import http from '../../services/http.service';
+import session from '../../services/session.service';
 
 const styles = StyleSheet.create({
 	account: {

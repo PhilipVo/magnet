@@ -29,7 +29,6 @@ class Login extends Component {
 
 		this.user = {
 			email: '',
-			password: ''
 		};
 	}
 
@@ -113,9 +112,11 @@ class Login extends Component {
 
 						<View style={{ flex: 2, justifyContent: 'flex-end' }}>
 							<Text style={[styles.whiteText, { fontSize: 16, marginBottom: 10 }]}>
-								Welcome Back
+								It happens sometimes.
 							</Text>
-							<Text style={styles.whiteText}>Sign into your account here:</Text>
+							<Text style={styles.whiteText}>
+								{"Please enter your email\nand we'll send you a new password"}
+							</Text>
 						</View>
 
 						{/* Form */}
@@ -130,20 +131,6 @@ class Login extends Component {
 								placeholderTextColor='rgb(200,200,200)'
 								style={styles.input} />
 
-							{/* Password */}
-							<TextInput
-								autoCapitalize='none'
-								autoCorrect={false}
-								onChangeText={password => this.user.password = password}
-								placeholder='Password'
-								placeholderTextColor='rgb(200,200,200)'
-								secureTextEntry={true}
-								style={styles.input} />
-
-							<Text onPress={this.props.forgot} style={[styles.already, { textAlign: 'right' }]}>
-								Forgot Password?
-							</Text>
-
 							{
 								this.state.error &&
 								<Text style={{ color: 'red', textAlign: 'center' }}>{this.state.error}</Text>
@@ -151,42 +138,10 @@ class Login extends Component {
 
 							{/* Create Account */}
 							<TouchableHighlight
-								onPress={this.login}
+								onPress={this.submit}
 								style={[styles.button, { backgroundColor: constants.lime, marginTop: 15 }]}
 								underlayColor='#31da5b'>
-								<Text style={styles.buttonText}>
-									{this.state.mode === 'register' ? 'Create Account' : 'Login'}
-								</Text>
-							</TouchableHighlight>
-
-							<View style={{ alignItems: 'center', marginTop: 10 }}>
-								<View style={{ flexDirection: 'row' }}>
-									<Text style={styles.already}>
-										{
-											this.state.mode === 'register' ?
-												'Aleady have an account? ' :
-												'Don\'t have an account? '
-										}
-									</Text>
-									<Text onPress={this.toggle} style={styles.sign}>
-										{this.state.mode === 'register' ? 'Sign In' : 'Register'}
-									</Text>
-								</View>
-							</View>
-
-							{/* Or */}
-							<View style={styles.orView}>
-								<View style={styles.orDivider} />
-								<Text style={styles.or}>   or   </Text>
-								<View style={styles.orDivider} />
-							</View>
-
-							{/* Facebook */}
-							<TouchableHighlight
-								onPress={this.facebookLogin}
-								style={[styles.button, { backgroundColor: '#3b5998' }]}
-								underlayColor='#3b5998'>
-								<Text style={styles.buttonText}>Continue with Facebook</Text>
+								<Text style={styles.buttonText}>Submit</Text>
 							</TouchableHighlight>
 						</View>
 
@@ -202,7 +157,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	forgot: () => dispatch({ type: 'APP_FORGOT' }),
 	setMode: mode => { dispatch({ type: 'SET_MODE', mode: mode }); }
 });
 

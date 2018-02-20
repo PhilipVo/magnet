@@ -12,23 +12,15 @@ export default StyleSheet.create({
 		fontSize: 10,
 		fontWeight: 'bold'
 	},
+	button: {
+		height: 50,
+		justifyContent: 'center',
+		padding: 5,
+	},
 	buttonText: {
 		color: 'white',
 		fontSize: 16,
 		textAlign: 'center'
-	},
-	create: {
-		backgroundColor: constants.lime,
-		height: 50,
-		justifyContent: 'center',
-		marginTop: 15,
-		padding: 5,
-	},
-	facebook: {
-		backgroundColor: '#3b5998',
-		height: 50,
-		justifyContent: 'center',
-		padding: 5,
 	},
 	input: {
 		backgroundColor: 'white',

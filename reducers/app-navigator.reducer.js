@@ -8,21 +8,15 @@ const initialNavState = Navigator.router.getStateForAction(
 const appNavigator = (state = initialNavState, action) => {
 	let nextState;
 	switch (action.type) {
-		case 'APP_HOME':
+		case 'APP_FORGOT':
 			nextState = Navigator.router.getStateForAction(
-				NavigationActions.navigate({ routeName: 'HOME' }),
+				NavigationActions.navigate({ routeName: 'Forgot' }),
 				state
 			);
 			break;
 		case 'APP_LOGIN':
 			nextState = Navigator.router.getStateForAction(
 				NavigationActions.navigate({ routeName: 'Login' }),
-				state
-			);
-			break;
-		case 'APP_REGISTER':
-			nextState = Navigator.router.getStateForAction(
-				NavigationActions.navigate({ routeName: 'Register' }),
 				state
 			);
 			break;

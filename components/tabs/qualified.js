@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/SimpleLineIcons';
 import moment from 'moment';
 
-import http from '../../../services/http.service';
+import http from '../../services/http.service';
 
 const styles = StyleSheet.create({
 	background: {
