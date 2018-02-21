@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 export const constants = {
 	blue: "#1d41a8",
@@ -16,6 +16,11 @@ export default StyleSheet.create({
 		height: 50,
 		justifyContent: 'center',
 		padding: 5,
+	},
+	background: {
+		height: Dimensions.get('window').height,
+		position: 'absolute',
+		width: Dimensions.get('window').width
 	},
 	buttonText: {
 		color: 'white',

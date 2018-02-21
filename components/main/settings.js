@@ -13,11 +13,11 @@ import {
 import { connect } from 'react-redux';
 import { LoginManager, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 
-import session from '../services/session.service';
+import session from '../../services/session.service';
 
-import styles, { constants } from '../styles';
+import styles, { constants } from '../../styles';
 
-class Home extends Component {
+class Settings extends Component {
 	constructor(props) {
 		super(props);
 
@@ -119,7 +119,7 @@ class Home extends Component {
 
 						{/* Buzzer */}
 						<View style={{ flex: 2, justifyContent: 'flex-end' }}>
-							<Text style={[styles.whiteText, { fontSize: 16 }]}>Good Morning! Welcome Back.</Text>
+							<Text style={[styles.whiteText, { fontSize: 16 }]}>SETTINGS</Text>
 							<Text style={styles.whiteText}>Sign into your account here:</Text>
 						</View>
 
@@ -213,4 +213,4 @@ const mapDispatchToProps = dispatch => ({
 	setMode: mode => { dispatch({ type: 'SET_MODE', mode: mode }); }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

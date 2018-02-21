@@ -13,18 +13,18 @@ import {
 import { connect } from 'react-redux';
 import { LoginManager, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 
-import session from '../services/session.service';
+import session from '../../services/session.service';
 
-import styles, { constants } from '../styles';
+import styles, { constants } from '../../styles';
 
-class Login extends Component {
+class Home extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			disabled: false,
 			error: null,
-			mode: 'login'
+			mode: 'register'
 		};
 
 		this.user = {
@@ -33,12 +33,15 @@ class Login extends Component {
 		};
 	}
 
+
 	facebookLogin = () => {
 		if (!this.state.disabled) {
 			this.setState({
 				disbaled: true,
 				error: null,
 			});
+
+			console.log("LoginManager", LoginManager);
 
 			LoginManager.logInWithReadPermissions(['public_profile']).then(result => {
 				if (result.isCancelled) this.setState({ disabled: false });
@@ -47,8 +50,8 @@ class Login extends Component {
 						if (error) throw error.toString();
 						else return session.facebookLogin({ id: result.id })
 							.then(isNew => {
-								if (isNew === true) this.props.setMode('NEW_USER');
-								else this.props.setMode('LOGGED_IN');
+								if (isNew === true) this.props.setMode(3);
+								else this.props.setMode(1);
 							}).catch(error => {
 								this.setState({
 									disabled: false,
@@ -69,33 +72,33 @@ class Login extends Component {
 	}
 
 	login = () => {
-		this.props.setMode('LOGGED_IN');
-		// if (!this.state.disabled) {
-		// 	this.setState({
-		// 		disabled: true,
-		// 		error: null
-		// 	});
+		if (!this.state.disabled) {
+			this.setState({
+				disabled: true,
+				error: null
+			});
 
-		// 	if (this.state.mode === 'login') {
-		// 		session.login(this.user)
-		// 			.then(() => this.props.setMode('LOGGED_IN'))
-		// 			.catch(error => {
-		// 				this.setState({
-		// 					disabled: false,
-		// 					error: typeof error === 'string' ? error : 'Oops, something went wrong.',
-		// 				});
-		// 			});
-		// 	} else {
-		// 		session.register(this.user)
-		// 			.then(() => this.props.setMode('NEW_USER'))
-		// 			.catch(error => {
-		// 				this.setState({
-		// 					disabled: false,
-		// 					error: typeof error === 'string' ? error : 'Oops, something went wrong.',
-		// 				});
-		// 			});
-		// 	}
-		// }
+			if (this.state.mode === 'login') {
+				session.login(this.user)
+					.then(() => this.props.setMode(1))
+					.catch(error => {
+						console.log(error)
+						this.setState({
+							disabled: false,
+							error: typeof error === 'string' ? error : 'Oops, something went wrong.',
+						});
+					});
+			} else {
+				session.register(this.user)
+					.then(() => this.props.setMode(3))
+					.catch(error => {
+						this.setState({
+							disabled: false,
+							error: typeof error === 'string' ? error : 'Oops, something went wrong.',
+						});
+					});
+			}
+		}
 	}
 
 	toggle = () => {
@@ -104,17 +107,19 @@ class Login extends Component {
 			this.setState({ mode: 'login' });
 	}
 
+
 	render() {
 		return (
 			<TouchableWithoutFeedback
 				onPress={Keyboard.dismiss}>
 				<View style={{ flex: 1 }}>
-					<KeyboardAvoidingView behavior={'padding'} style={{ flex: 1 }}>
+					<KeyboardAvoidingView
+						behavior={'padding'}
+						style={{ flex: 1 }}>
 
+						{/* Buzzer */}
 						<View style={{ flex: 2, justifyContent: 'flex-end' }}>
-							<Text style={[styles.whiteText, { fontSize: 16, marginBottom: 10 }]}>
-								Welcome Back
-							</Text>
+							<Text style={[styles.whiteText, { color: 'black', fontSize: 16 }]}>HOME</Text>
 							<Text style={styles.whiteText}>Sign into your account here:</Text>
 						</View>
 
@@ -140,7 +145,7 @@ class Login extends Component {
 								secureTextEntry={true}
 								style={styles.input} />
 
-							<Text onPress={this.props.forgot} style={[styles.already, { textAlign: 'right' }]}>
+							<Text style={[styles.already, { textAlign: 'right' }]}>
 								Forgot Password?
 							</Text>
 
@@ -152,7 +157,7 @@ class Login extends Component {
 							{/* Create Account */}
 							<TouchableHighlight
 								onPress={this.login}
-								style={[styles.button, { backgroundColor: constants.lime, marginTop: 15 }]}
+								style={styles.create}
 								underlayColor='#31da5b'>
 								<Text style={styles.buttonText}>
 									{this.state.mode === 'register' ? 'Create Account' : 'Login'}
@@ -184,12 +189,15 @@ class Login extends Component {
 							{/* Facebook */}
 							<TouchableHighlight
 								onPress={this.facebookLogin}
-								style={[styles.button, { backgroundColor: '#3b5998' }]}
+								style={styles.facebook}
 								underlayColor='#3b5998'>
 								<Text style={styles.buttonText}>Continue with Facebook</Text>
 							</TouchableHighlight>
 						</View>
 
+						<View style={{ flex: 1 }}>
+
+						</View>
 					</KeyboardAvoidingView>
 				</View>
 			</TouchableWithoutFeedback>
@@ -197,11 +205,12 @@ class Login extends Component {
 	}
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+	mode: state.session
+});
 
 const mapDispatchToProps = dispatch => ({
-	forgot: () => dispatch({ type: 'APP_FORGOT' }),
 	setMode: mode => { dispatch({ type: 'SET_MODE', mode: mode }); }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

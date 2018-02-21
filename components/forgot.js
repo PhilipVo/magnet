@@ -46,8 +46,8 @@ class Login extends Component {
 						if (error) throw error.toString();
 						else return session.facebookLogin({ id: result.id })
 							.then(isNew => {
-								if (isNew === true) this.props.setMode(3);
-								else this.props.setMode(1);
+								if (isNew === true) this.props.setMode('NEW_USER');
+								else this.props.setMode('LOGGED_IN');
 							}).catch(error => {
 								this.setState({
 									disabled: false,
@@ -76,7 +76,7 @@ class Login extends Component {
 
 			if (this.state.mode === 'login') {
 				session.login(this.user)
-					.then(() => this.props.setMode(1))
+					.then(() => this.props.setMode('LOGGED_IN'))
 					.catch(error => {
 						console.log(error)
 						this.setState({
@@ -86,7 +86,7 @@ class Login extends Component {
 					});
 			} else {
 				session.register(this.user)
-					.then(() => this.props.setMode(3))
+					.then(() => this.props.setMode('NEW_USER'))
 					.catch(error => {
 						this.setState({
 							disabled: false,

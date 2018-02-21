@@ -13,10 +13,10 @@ class SessionService {
 	facebookLogin(data) {
 		return http.post('/users/facebook-login', JSON.stringify(data))
 			.then(data => {
-				return AsyncStorage.setItem('gametimeToken', data.gametimeToken)
-					.then(() => AsyncStorage.getItem('gametimeToken'))
-					.then(gametimeToken => {
-						this.setSession(gametimeToken);
+				return AsyncStorage.setItem('magnetToken', data.magnetToken)
+					.then(() => AsyncStorage.getItem('magnetToken'))
+					.then(magnetToken => {
+						this.setSession(magnetToken);
 						this.isFacebookUser = true;
 						return Promise.resolve(data.isNew);
 					}).catch(error => Promise.reject(error));
@@ -25,15 +25,15 @@ class SessionService {
 
 	login(data) {
 		return http.post('/users/login', JSON.stringify(data))
-			.then(gametimeToken => AsyncStorage.setItem('gametimeToken', gametimeToken))
-			.then(() => AsyncStorage.getItem('gametimeToken'))
-			.then(gametimeToken => this.setSession(gametimeToken))
+			.then(magnetToken => AsyncStorage.setItem('magnetToken', magnetToken))
+			.then(() => AsyncStorage.getItem('magnetToken'))
+			.then(magnetToken => this.setSession(magnetToken))
 			.catch(error => Promise.reject(error));
 	}
 
 	logout() {
 		return http.get('/api/users/logout')
-			.then(() => AsyncStorage.removeItem('gametimeToken'))
+			.then(() => AsyncStorage.removeItem('magnetToken'))
 			.then(() => {
 				if (this.isFacebookUser) LoginManager.logOut();
 				this.isFacebookUser = false;
@@ -42,17 +42,17 @@ class SessionService {
 
 	register(data) {
 		return http.post('/users/register', JSON.stringify(data))
-			.then(gametimeToken => AsyncStorage.setItem('gametimeToken', gametimeToken))
-			.then(() => AsyncStorage.getItem('gametimeToken'))
-			.then(gametimeToken => this.setSession(gametimeToken))
+			.then(magnetToken => AsyncStorage.setItem('magnetToken', magnetToken))
+			.then(() => AsyncStorage.getItem('magnetToken'))
+			.then(magnetToken => this.setSession(magnetToken))
 			.catch(error => Promise.reject(error));
 	}
 
-	setSession(gametimeToken) {
+	setSession(magnetToken) {
 		return new Promise((resolve, reject) => {
 			try {
 				// Set user:
-				// payload = JSON.parse(base64.decode(gametimeToken.split('.')[1].replace('-', '+').replace('_', '/')));
+				// payload = JSON.parse(base64.decode(magnetToken.split('.')[1].replace('-', '+').replace('_', '/')));
 				// this.id = payload.id;
 
 				// Update deviceToken:

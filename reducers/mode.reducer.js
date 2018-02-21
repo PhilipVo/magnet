@@ -2,13 +2,13 @@
 |--------------------------------------------------
 | 										MODES
 |--------------------------------------------------
-| 0: loading
-| 1: logged in
-| 2: logged out
-| 3: new user
+	LOADING: when app is still loading.
+	LOGGED_IN: when a current session exists.
+	LOGGED_OUT: when no current session exists.
+	NEW_USER: when registering.
 */
 
-const mode = (state = 0, action) => {
+const mode = (state = 'LOADING', action) => {
 	switch (action.type) {
 		case 'SET_MODE':
 			return action.mode;
