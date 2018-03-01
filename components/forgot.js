@@ -139,7 +139,7 @@ class Login extends Component {
 							{/* Create Account */}
 							<TouchableHighlight
 								onPress={this.submit}
-								style={[styles.button, { backgroundColor: constants.lime, marginTop: 15 }]}
+								style={[styles.button, { backgroundColor: constants.green, marginTop: 15 }]}
 								underlayColor='#31da5b'>
 								<Text style={styles.buttonText}>Submit</Text>
 							</TouchableHighlight>

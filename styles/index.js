@@ -1,8 +1,12 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
 export const constants = {
-	blue: "#1d41a8",
-	lime: "#8bff00"
+	blue: '#1d41a8',
+	darkGray: '#888888',
+	darkGreen: '#86bf40',
+	green: '#8bff00',
+	lightGray: '#bbbbbb',
+	offWhite: '#eeeeee'
 }
 
 export default StyleSheet.create({
@@ -21,6 +25,12 @@ export default StyleSheet.create({
 		height: Dimensions.get('window').height,
 		position: 'absolute',
 		width: Dimensions.get('window').width
+	},
+	bottomButton: {
+		alignItems: 'center',
+		flex: 1,
+		height: 50,
+		justifyContent: 'center'
 	},
 	buttonText: {
 		color: 'white',

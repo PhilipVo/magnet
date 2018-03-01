@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { LoginManager, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
+import LinearGradient from 'react-native-linear-gradient';
 
 import session from '../services/session.service';
 
@@ -24,7 +25,7 @@ class Login extends Component {
 		this.state = {
 			disabled: false,
 			error: null,
-			mode: 'login'
+			mode: this.props.mode
 		};
 
 		this.user = {
@@ -69,7 +70,7 @@ class Login extends Component {
 	}
 
 	login = () => {
-		this.props.setMode('LOGGED_IN');
+		this.props.setMode('NEW_USER');
 		// if (!this.state.disabled) {
 		// 	this.setState({
 		// 		disabled: true,
@@ -152,11 +153,15 @@ class Login extends Component {
 							{/* Create Account */}
 							<TouchableHighlight
 								onPress={this.login}
-								style={[styles.button, { backgroundColor: constants.lime, marginTop: 15 }]}
+								style={{ marginTop: 15 }}
 								underlayColor='#31da5b'>
-								<Text style={styles.buttonText}>
-									{this.state.mode === 'register' ? 'Create Account' : 'Login'}
-								</Text>
+								<LinearGradient
+									colors={[constants.green, constants.darkGreen]}
+									style={styles.button}>
+									<Text style={styles.buttonText}>
+										{this.state.mode === 'register' ? 'Create Account' : 'Login'}
+									</Text>
+								</LinearGradient>
 							</TouchableHighlight>
 
 							<View style={{ alignItems: 'center', marginTop: 10 }}>
@@ -197,7 +202,9 @@ class Login extends Component {
 	}
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = (state, props) => ({
+	mode: props.navigation.state.params.mode
+});
 
 const mapDispatchToProps = dispatch => ({
 	forgot: () => dispatch({ type: 'APP_FORGOT' }),

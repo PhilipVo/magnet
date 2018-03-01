@@ -4,16 +4,18 @@ import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
 import Forgot from '../components/forgot';
 import Login from '../components/login';
+import Welcome from '../components/welcome';
 
 const Navigator = StackNavigator(
 	{
 		Forgot: { screen: Forgot },
-		Login: { screen: Login }
+		Login: { screen: Login },
+		Welcome: { screen: Welcome }
 	},
 	{
 		cardStyle: { backgroundColor: 'transparent' },
 		headerMode: 'none',
-		initialRouteName: 'Login'
+		initialRouteName: 'Welcome'
 	}
 );
 
