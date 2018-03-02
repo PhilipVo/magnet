@@ -3,8 +3,9 @@ import { Dimensions, StyleSheet } from 'react-native';
 export const constants = {
 	blue: '#1d41a8',
 	darkGray: '#888888',
-	darkGreen: '#86bf40',
+	darkGreen: '#68bf00',
 	green: '#8bff00',
+	lightGreen: '#baff67',
 	lightGray: '#bbbbbb',
 	offWhite: '#eeeeee'
 }
@@ -41,6 +42,12 @@ export default StyleSheet.create({
 		backgroundColor: 'white',
 		color: 'black',
 		fontSize: 16,
+		height: 50,
+		marginBottom: 10,
+		padding: 10
+	},
+	inputView: {
+		backgroundColor: 'white',
 		height: 50,
 		marginBottom: 10,
 		padding: 10

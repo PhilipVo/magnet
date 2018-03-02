@@ -34,7 +34,7 @@ class Welcome extends Component {
 								onPress={() => this.props.appLogin('register')}
 								style={{ flex: 1 }}>
 								<LinearGradient
-									colors={[constants.green, constants.darkGreen]}
+									colors={[constants.lightGreen, constants.darkGreen]}
 									style={[styles.bottomButton, { backgroundColor: constants.green }]}>
 									<Text style={styles.whiteText}>Sign Up</Text>
 								</LinearGradient>

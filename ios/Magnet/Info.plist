@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Magnet will need access to your microphone if you want to make any calls.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Magnet may need access to your camera to take pictures and make video calls.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Magnet needs access your photo library so that you can select and upload your pictures.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -72,25 +78,25 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-  <key>CFBundleURLTypes</key>
-  <array>
-    <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>fb189727198448950</string>
-      </array>
-    </dict>
-  </array>
-  <key>FacebookAppID</key>
-  <string>189727198448950</string>
-  <key>FacebookDisplayName</key>
-  <string>Magnet</string>
-  <key>LSApplicationQueriesSchemes</key>
-  <array>
-    <string>fbapi</string>
-    <string>fb-messenger-share-api</string>
-    <string>fbauth2</string>
-    <string>fbshareextension</string>
-  </array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb189727198448950</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>189727198448950</string>
+	<key>FacebookDisplayName</key>
+	<string>Magnet</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 </dict>
 </plist>

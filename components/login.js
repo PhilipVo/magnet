@@ -3,7 +3,6 @@ import {
 	Image,
 	Keyboard,
 	KeyboardAvoidingView,
-	StyleSheet,
 	Text,
 	TextInput,
 	TouchableHighlight,
@@ -114,9 +113,15 @@ class Login extends Component {
 
 						<View style={{ flex: 2, justifyContent: 'flex-end' }}>
 							<Text style={[styles.whiteText, { fontSize: 16, marginBottom: 10 }]}>
-								Welcome Back
+								{this.state.mode === 'register' ? 'Welcome to Magnet' : 'Welcome Back'}
 							</Text>
-							<Text style={styles.whiteText}>Sign into your account here:</Text>
+							<Text style={styles.whiteText}>
+								{
+									this.state.mode === 'register' ?
+										'Please provide the following information:' :
+										'Sign into your account here:'
+								}
+							</Text>
 						</View>
 
 						{/* Form */}
@@ -156,7 +161,7 @@ class Login extends Component {
 								style={{ marginTop: 15 }}
 								underlayColor='#31da5b'>
 								<LinearGradient
-									colors={[constants.green, constants.darkGreen]}
+									colors={[constants.lightGreen, constants.darkGreen]}
 									style={styles.button}>
 									<Text style={styles.buttonText}>
 										{this.state.mode === 'register' ? 'Create Account' : 'Login'}
