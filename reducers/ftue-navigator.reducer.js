@@ -20,9 +20,9 @@ const ftueNavigator = (state = initialNavState, action) => {
 				state
 			);
 			break;
-		case 'FTUE_TEAMS':
+		case 'FTUE_PICTURES':
 			nextState = Navigator.router.getStateForAction(
-				NavigationActions.navigate({ routeName: 'Teams', params: action.params }),
+				NavigationActions.navigate({ routeName: 'Pictures' }),
 				state
 			);
 			break;
