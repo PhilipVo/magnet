@@ -1,22 +1,22 @@
 import { NavigationActions } from 'react-navigation';
 
-import { Navigator } from '../navigators/add.navigator';
+import { Navigator } from '../navigators/home.navigator';
 const initialNavState = Navigator.router.getStateForAction(
 	NavigationActions.init()
 );
 
-const addNavigator = (state = initialNavState, action) => {
+const homeNavigator = (state = initialNavState, action) => {
 	let nextState;
 	switch (action.type) {
-		case 'ADD_BACK':
+		case 'HOME_BACK':
 			nextState = Navigator.router.getStateForAction(
 				NavigationActions.back(),
 				state
 			);
 			break;
-		case 'ADD_TEAMS':
+		case 'HOME_CHAT':
 			nextState = Navigator.router.getStateForAction(
-				NavigationActions.navigate({ routeName: 'Teams', params: action.params }),
+				NavigationActions.navigate({ routeName: 'Chat', params: action.params  }),
 				state
 			);
 			break;
@@ -28,4 +28,4 @@ const addNavigator = (state = initialNavState, action) => {
 	return nextState || state;
 }
 
-export default addNavigator;
+export default homeNavigator;

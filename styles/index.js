@@ -38,6 +38,19 @@ export default StyleSheet.create({
 		fontSize: 16,
 		textAlign: 'center'
 	},
+	centeredView: {
+		alignItems: 'center',
+		flex: 1,
+		justifyContent: 'center'
+	},
+	homeHeader: { 
+		alignItems: 'center',
+		backgroundColor: constants.lightGray,
+		flex: 1,
+		flexDirection: 'row',
+		paddingTop: 10,
+		justifyContent: 'space-around'
+	},
 	input: {
 		backgroundColor: 'white',
 		color: 'black',
@@ -51,6 +64,13 @@ export default StyleSheet.create({
 		height: 50,
 		marginBottom: 10,
 		padding: 10
+	},
+	searchInput: {
+		backgroundColor: constants.offWhite,
+		borderRadius: 5,
+		margin: 5,
+		padding: 12,
+		paddingLeft: 30,
 	},
 	whiteText: {
 		backgroundColor: 'transparent',

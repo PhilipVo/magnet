@@ -100,11 +100,7 @@ class Pictures extends Component {
 							{
 								this.state.images.length == 0 && 
 									<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
-										<Icon 
-											backgroundColor='#3b5998'
-											color='white'
-											name='picture'
-											size={100} />
+										<Icon color='white' name='picture' size={100} />
 									</View>
 							}
 						</View>

@@ -28,14 +28,14 @@ class App extends Component {
 	render() {
 		let Navigator = null;
 		// if (this.props.mode === 'LOGGED_IN') {
-		// 	const MainNavigator = require('./navigators/main.navigator').MainNavigator;
-		// 	Navigator = <MainNavigator />
+			const MainNavigator = require('./navigators/main.navigator').MainNavigator;
+			Navigator = <MainNavigator />
 		// } else if (this.props.mode === 'LOGGED_OUT') {
 		// 	const AppNavigator = require('./navigators/app.navigator').AppNavigator;
 		// 	Navigator = <AppNavigator />
 		// } else if (this.props.mode === 'NEW_USER') {
-		const FTUENavigator = require('./navigators/ftue.navigator').FTUENavigator;
-		Navigator = <FTUENavigator />
+		// const FTUENavigator = require('./navigators/ftue.navigator').FTUENavigator;
+		// Navigator = <FTUENavigator />
 		// }
 
 		return (
@@ -43,7 +43,6 @@ class App extends Component {
 				{
 					this.props.mode !== 'LOGGED_IN' &&
 					<Image
-						source={require('./assets/images/background0.png')}
 						style={styles.background} />
 				}
 				<StatusBar barStyle='light-content' />

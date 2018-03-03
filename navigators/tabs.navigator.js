@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, TabNavigator } from 'react-navigation';
 
-import Prospects from '../components/tabs/prospects';
-import Qualified from '../components/tabs/qualified';
+import Prospects from '../components/main/home/tabs/prospects';
+import Qualified from '../components/main/home/tabs/qualified';
 
 const Navigator = TabNavigator(
 	{
@@ -12,9 +12,8 @@ const Navigator = TabNavigator(
 	},
 	{
 		headerMode: 'none',
-		initialRouteName: 'Prospects',
+		initialRouteName: 'Qualified',
 		navigationOptions: { tabBarVisible: false },
-		order: ['Qualified', 'Prospects'],
 		tabBarOptions: { showLabel: false }
 	}
 );

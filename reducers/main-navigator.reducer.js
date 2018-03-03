@@ -20,6 +20,12 @@ const mainNavigator = (state = initialNavState, action) => {
 				state
 			);
 			break;
+		case 'MAIN_TOGGLE':
+			nextState = Navigator.router.getStateForAction(
+				NavigationActions.navigate({ routeName: 'DrawerToggle' }),
+				state
+			);
+			break;
 		default:
 			nextState = Navigator.router.getStateForAction(action, state);
 			break;

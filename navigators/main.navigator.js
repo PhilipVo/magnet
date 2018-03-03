@@ -2,14 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, DrawerNavigator } from 'react-navigation';
 
-import Home from '../components/main/home';
+import { HomeNavigator } from './home.navigator';
+
 import Settings from '../components/main/settings';
 
 import { constants } from '../styles';
 
 const Navigator = DrawerNavigator(
 	{
-		Home: { screen: Home },
+		Home: { screen: HomeNavigator },
 		Settings: { screen: Settings },
 	},
 	{
