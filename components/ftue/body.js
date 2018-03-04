@@ -11,12 +11,13 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import http from '../../services/http.service';
 
-import styles, { constants } from '../../styles';
+import { colors } from '../../etc/constants';
+import styles from '../../styles';
 
 class Body extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { 
+		this.state = {
 			birthday: null,
 			enabled: false,
 			first: '',
@@ -31,7 +32,7 @@ class Body extends Component {
 		const valid = this.state.birthday && this.state.first && this.state.last &&
 			this.state.gender && this.state.path ? true : false;
 
-			return (
+		return (
 			<View style={{ flex: 1 }}>
 				{/* Header */}
 				<View style={{ flex: 1 }}>
@@ -46,11 +47,11 @@ class Body extends Component {
 				{/* Footer */}
 				<View style={{ flex: 1, justifyContent: 'flex-end' }}>
 					<View style={{ flexDirection: 'row', height: 50 }}>
-					<TouchableHighlight
+						<TouchableHighlight
 							onPress={this.props.ftueBack}
 							style={{ flex: 1 }}>
 							<LinearGradient
-								colors={[constants.lightGray, constants.darkGray]}
+								colors={[colors.lightGray, colors.darkGray]}
 								style={styles.bottomButton}>
 								<Text style={[styles.whiteText, { fontWeight: 'bold' }]}>Back</Text>
 							</LinearGradient>
@@ -60,9 +61,9 @@ class Body extends Component {
 							onPress={this.props.ftuePictures}
 							style={{ flex: 1 }}>
 							<LinearGradient
-								colors={valid ? [constants.green, constants.darkGreen] :
-									[constants.lightGray, constants.darkGray]}
-								style={[styles.bottomButton, { backgroundColor: constants.green }]}>
+								colors={valid ? [colors.green, colors.darkGreen] :
+									[colors.lightGray, colors.darkGray]}
+								style={[styles.bottomButton, { backgroundColor: colors.green }]}>
 								<Text style={[styles.whiteText, { fontWeight: 'bold' }]}>Next</Text>
 							</LinearGradient>
 						</TouchableOpacity>

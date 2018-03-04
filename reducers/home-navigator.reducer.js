@@ -16,7 +16,13 @@ const homeNavigator = (state = initialNavState, action) => {
 			break;
 		case 'HOME_CHAT':
 			nextState = Navigator.router.getStateForAction(
-				NavigationActions.navigate({ routeName: 'Chat', params: action.params  }),
+				NavigationActions.navigate({ routeName: 'Chat', params: action.params }),
+				state
+			);
+			break;
+		case 'HOME_PROFILE':
+			nextState = Navigator.router.getStateForAction(
+				NavigationActions.navigate({ routeName: 'Profile', params: action.params }),
 				state
 			);
 			break;

@@ -19,23 +19,23 @@ class Qualified extends Component {
 		this.state = {
 			data: [
 				{
-					first: 'Magnet Bot',
+					first: 'Gal Gadot',
 					message: 'Hello Elliot,\nWelcome to Magnet where you attract the perfect partner.'
 				},
 				{
-					first: 'Magnet Bot',
+					first: 'Gal Gadot',
 					message: 'Hello Elliot,\nWelcome to Magnet where you attract the perfect partner.'
 				},
 				{
-					first: 'Magnet Bot',
+					first: 'Gal Gadot',
 					message: 'Hello Elliot,\nWelcome to Magnet where you attract the perfect partner.'
 				},
 				{
-					first: 'Magnet Bot',
+					first: 'Gal Gadot',
 					message: 'Hello Elliot,\nWelcome to Magnet where you attract the perfect partner.'
 				},
 				{
-					first: 'Magnet Bot',
+					first: 'Gal Gadot',
 					message: 'Hello Elliot,\nWelcome to Magnet where you attract the perfect partner.'
 				},
 			],
@@ -44,7 +44,7 @@ class Qualified extends Component {
 	}
 
 	componentDidMount = () => {
-			
+
 	}
 
 	onRefresh = () => {
@@ -70,14 +70,16 @@ class Qualified extends Component {
 							size={RefreshControl.SIZE.SMALL} />
 					}
 					renderItem={({ item }) => (
-						<TouchableHighlight onPress={() => this.props.homeChat(item.first)}>
+						<TouchableHighlight
+							onPress={() => this.props.homeChat(item.first)}
+							underlayColor='transparent'>
 							<View style={{ flexDirection: 'row', margin: 10 }}>
 								<View style={{ flex: 1, marginRight: 10 }}>
-									<Image 
-										source={{ uri: 'https://assets.wired.com/photos/w_1720/wp-content/uploads/2016/04/chat_bot-01.jpg' }}
+									<Image
+										source={{ uri: 'https://vignette.wikia.nocookie.net/smallville/images/1/13/Gal_Gadot.jpg/revision/latest?cb=20170115102329' }}
 										style={{ borderRadius: 35, height: 70, width: 70 }} />
 								</View>
-								
+
 								<View style={{ flex: 4 }}>
 									<Text style={{ fontSize: 18, fontWeight: 'bold' }}>{item.first}</Text>
 									<Text style={{ fontSize: 11 }}>{item.message}</Text>
@@ -90,7 +92,7 @@ class Qualified extends Component {
 	}
 }
 
-const mapStateToProps = state => ({ });
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
 	homeChat: first => dispatch({ type: 'HOME_CHAT', params: { first: first } })

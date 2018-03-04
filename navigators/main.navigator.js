@@ -6,7 +6,7 @@ import { HomeNavigator } from './home.navigator';
 
 import Settings from '../components/main/settings';
 
-import { constants } from '../styles';
+import { colors } from '../etc/constants';
 
 const Navigator = DrawerNavigator(
 	{
@@ -17,7 +17,7 @@ const Navigator = DrawerNavigator(
 		contentOptions: {
 			inactiveTintColor: 'white',
 		},
-		drawerBackgroundColor: constants.blue,
+		drawerBackgroundColor: colors.blue,
 		initialRouteName: 'Home',
 		order: ['Home', 'Settings'],
 	}

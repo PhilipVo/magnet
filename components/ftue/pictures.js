@@ -15,9 +15,10 @@ import moment from 'moment';
 
 import http from '../../services/http.service';
 
-import styles, { constants } from '../../styles';
+import { colors } from '../../etc/constants';
+import styles from '../../styles';
 
-const options = [ 'Cancel', 'Male', 'Female' ];
+const options = ['Cancel', 'Male', 'Female'];
 
 class Pictures extends Component {
 	constructor(props) {
@@ -34,7 +35,7 @@ class Pictures extends Component {
 			multiple: true
 		}).then(images => {
 			console.log(images);
-			this.setState({images: images});
+			this.setState({ images: images });
 		}).catch(() => { });
 	}
 
@@ -42,7 +43,7 @@ class Pictures extends Component {
 		const valid = this.state.birthday && this.state.first && this.state.last &&
 			this.state.gender && this.state.path ? true : false;
 
-			return (
+		return (
 			<View style={{ flex: 1 }}>
 				{/* Header */}
 				<View style={{ flex: 1 }}>
@@ -56,52 +57,52 @@ class Pictures extends Component {
 						style={{ flex: 2 }}>
 						<View style={{ flex: 1, justifyContent: 'space-around' }}>
 							{
-								this.state.images.length > 0 && 
-									<View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
-										{
-											this.state.images[0] && <Image
-												source={{ uri: this.state.images[0].path }}
-												style={{ backgroundColor: 'white', height: 120, width: 120 }} />
-										}
-										{
-											this.state.images[1] && <Image
-												source={{ uri: this.state.images[1].path }}
-												style={{ backgroundColor: 'white', height: 120, width: 120 }} />
-										}
-										{
-											this.state.images[2] && <Image
-												source={{ uri: this.state.images[2].path }}
-												style={{ backgroundColor: 'white', height: 120, width: 120 }} />
-										}
-									</View>
+								this.state.images.length > 0 &&
+								<View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+									{
+										this.state.images[0] && <Image
+											source={{ uri: this.state.images[0].path }}
+											style={{ backgroundColor: 'white', height: 120, width: 120 }} />
+									}
+									{
+										this.state.images[1] && <Image
+											source={{ uri: this.state.images[1].path }}
+											style={{ backgroundColor: 'white', height: 120, width: 120 }} />
+									}
+									{
+										this.state.images[2] && <Image
+											source={{ uri: this.state.images[2].path }}
+											style={{ backgroundColor: 'white', height: 120, width: 120 }} />
+									}
+								</View>
 							}
 
 							{
-								this.state.images.length > 3 && 
-									<View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
-										{
-											this.state.images[3] && <Image
-												source={{ uri: this.state.images[3].path }}
-												style={{ backgroundColor: 'white', height: 120, width: 120 }} />
-										}
-										{
-											this.state.images[4] && <Image
-												source={{ uri: this.state.images[4].path }}
-												style={{ backgroundColor: 'white', height: 120, width: 120 }} />
-										}
-										{
-											this.state.images[5] && <Image
-												source={{ uri: this.state.images[5].path }}
-												style={{ backgroundColor: 'white', height: 120, width: 120 }} />
-										}
-									</View>
+								this.state.images.length > 3 &&
+								<View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+									{
+										this.state.images[3] && <Image
+											source={{ uri: this.state.images[3].path }}
+											style={{ backgroundColor: 'white', height: 120, width: 120 }} />
+									}
+									{
+										this.state.images[4] && <Image
+											source={{ uri: this.state.images[4].path }}
+											style={{ backgroundColor: 'white', height: 120, width: 120 }} />
+									}
+									{
+										this.state.images[5] && <Image
+											source={{ uri: this.state.images[5].path }}
+											style={{ backgroundColor: 'white', height: 120, width: 120 }} />
+									}
+								</View>
 							}
 
 							{
-								this.state.images.length == 0 && 
-									<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
-										<Icon color='white' name='picture' size={100} />
-									</View>
+								this.state.images.length == 0 &&
+								<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
+									<Icon color='white' name='picture' size={100} />
+								</View>
 							}
 						</View>
 					</TouchableHighlight>
@@ -127,7 +128,7 @@ class Pictures extends Component {
 							onPress={this.props.ftueBack}
 							style={{ flex: 1 }}>
 							<LinearGradient
-								colors={[constants.lightGray, constants.darkGray]}
+								colors={[colors.lightGray, colors.darkGray]}
 								style={styles.bottomButton}>
 								<Text style={[styles.whiteText, { fontWeight: 'bold' }]}>Back</Text>
 							</LinearGradient>
@@ -136,7 +137,7 @@ class Pictures extends Component {
 							onPress={() => this.props.appLogin('register')}
 							style={{ flex: 1 }}>
 							<LinearGradient
-								colors={[constants.lightGreen, constants.darkGreen]}
+								colors={[colors.lightGreen, colors.darkGreen]}
 								style={styles.bottomButton}>
 								<Text style={[styles.whiteText, { fontWeight: 'bold' }]}>Next</Text>
 							</LinearGradient>

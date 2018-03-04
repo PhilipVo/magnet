@@ -43,7 +43,7 @@ export default StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center'
 	},
-	homeHeader: { 
+	homeHeader: {
 		alignItems: 'center',
 		backgroundColor: constants.lightGray,
 		flex: 1,

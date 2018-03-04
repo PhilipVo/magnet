@@ -5,7 +5,8 @@ import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
 import { TabsNavigator } from '../../../navigators/tabs.navigator';
 
-import styles, { constants } from '../../../styles';
+import { colors } from '../../../etc/constants';
+import styles from '../../../styles';
 
 class Home extends Component {
 	render() {
@@ -16,17 +17,17 @@ class Home extends Component {
 				{/* Header */}
 				<View style={styles.homeHeader}>
 					<View style={styles.centeredView}>
-						<Icon color={constants.darkGray} name='menu' onPress={this.props.mainToggle} size={40} />
+						<Icon color={colors.darkGray} name='menu' onPress={this.props.mainToggle} size={40} />
 					</View>
 					<View style={{ flex: 3 }}>
 						<SegmentedControlIOS
 							values={['Qualified', 'Prospects']}
 							selectedIndex={0}
 							onValueChange={this.props.tabsToggle}
-							style={{ flex: 1, marginVertical: 10 }}/>
+							style={{ flex: 1, marginVertical: 10 }} />
 					</View>
 					<View style={styles.centeredView}>
-						<Icon color={constants.darkGray} name='menu' size={40} />
+						<Icon color={colors.darkGray} name='menu' size={40} />
 					</View>
 				</View>
 
@@ -36,12 +37,12 @@ class Home extends Component {
 					<TextInput
 						autoCapitalize='none'
 						autoCorrect={false}
-						onChangeText={() => {}}
+						onChangeText={() => { }}
 						placeholder='Search'
-						placeholderTextColor={constants.lightGray}
+						placeholderTextColor={colors.lightGray}
 						style={styles.searchInput} />
 					<Icon
-						color={constants.lightGray}
+						color={colors.lightGray}
 						name='search'
 						size={18}
 						style={{ position: 'absolute', left: 14, top: 17 }} />
@@ -53,7 +54,7 @@ class Home extends Component {
 	}
 }
 
-const mapStateToProps = state => ({ });
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
 	mainToggle: () => dispatch({ type: 'MAIN_TOGGLE' }),

@@ -15,7 +15,8 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import session from '../services/session.service';
 
-import styles, { constants } from '../styles';
+import { colors } from '../etc/constants';
+import styles from '../styles';
 
 class Login extends Component {
 	constructor(props) {
@@ -161,7 +162,7 @@ class Login extends Component {
 								style={{ marginTop: 15 }}
 								underlayColor='#31da5b'>
 								<LinearGradient
-									colors={[constants.lightGreen, constants.darkGreen]}
+									colors={[colors.lightGreen, colors.darkGreen]}
 									style={styles.button}>
 									<Text style={styles.buttonText}>
 										{this.state.mode === 'register' ? 'Create Account' : 'Login'}

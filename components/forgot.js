@@ -15,7 +15,8 @@ import { LoginManager, GraphRequest, GraphRequestManager } from 'react-native-fb
 
 import session from '../services/session.service';
 
-import styles, { constants } from '../styles';
+import { colors } from '../etc/constants';
+import styles from '../styles';
 
 class Login extends Component {
 	constructor(props) {
@@ -139,7 +140,7 @@ class Login extends Component {
 							{/* Create Account */}
 							<TouchableHighlight
 								onPress={this.submit}
-								style={[styles.button, { backgroundColor: constants.green, marginTop: 15 }]}
+								style={[styles.button, { backgroundColor: colors.green, marginTop: 15 }]}
 								underlayColor='#31da5b'>
 								<Text style={styles.buttonText}>Submit</Text>
 							</TouchableHighlight>

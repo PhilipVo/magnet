@@ -3,7 +3,8 @@ import { Image, Text, TouchableHighlight, View } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 
-import styles, { constants } from '../styles';
+import { colors } from '../etc/constants';
+import styles from '../styles';
 
 class Welcome extends Component {
 	render() {
@@ -26,16 +27,16 @@ class Welcome extends Component {
 						<View style={{ flexDirection: 'row' }}>
 							<TouchableHighlight
 								onPress={() => this.props.appLogin('login')}
-								style={[styles.bottomButton, { backgroundColor: constants.blue }]}
-								underlayColor={constants.blue}>
+								style={[styles.bottomButton, { backgroundColor: colors.blue }]}
+								underlayColor={colors.blue}>
 								<Text style={styles.whiteText}>Sign In</Text>
 							</TouchableHighlight>
 							<TouchableHighlight
 								onPress={() => this.props.appLogin('register')}
 								style={{ flex: 1 }}>
 								<LinearGradient
-									colors={[constants.lightGreen, constants.darkGreen]}
-									style={[styles.bottomButton, { backgroundColor: constants.green }]}>
+									colors={[colors.lightGreen, colors.darkGreen]}
+									style={[styles.bottomButton, { backgroundColor: colors.green }]}>
 									<Text style={styles.whiteText}>Sign Up</Text>
 								</LinearGradient>
 							</TouchableHighlight>

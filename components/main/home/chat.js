@@ -1,11 +1,38 @@
 import React, { Component } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Platform, Text, TextInput, View } from 'react-native';
 import { connect } from 'react-redux';
-import { GiftedChat } from 'react-native-gifted-chat';
-import Actions from 'react-native-gifted-chat/src/Actions';
+import { ActionSheetCustom as ActionSheet } from 'react-native-custom-actionsheet';
+import {
+	Actions,
+	Bubble,
+	GiftedChat,
+	InputToolbar,
+	MessageText,
+	Time
+} from 'react-native-gifted-chat';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
-import styles, { constants } from '../../../styles';
+import CustomActions from './custom-actions';
+import CustomComposer from './custom-composer';
+
+import { colors } from '../../../etc/constants';
+import styles from '../../../styles';
+
+const options = [
+	'Cancel',
+	'View Profile',
+	'Video Call',
+	'Voice Call',
+	'Unmatch',
+	{
+		component: <Text style={{ color: 'red', fontSize: 20 }}>Report User</Text>,
+		height: 58
+	},
+	{
+		component: <Text style={{ color: 'red', fontSize: 20 }}>Block User</Text>,
+		height: 58
+	},
+];
 
 class Chat extends Component {
 	constructor(props) {
@@ -19,68 +46,149 @@ class Chat extends Component {
 	componentWillMount() {
 		this.setState({
 			messages: [
-        {
+				{
 					_id: 1,
-          text: 'Hello developer',
+					text: 'Hello developer',
 					createdAt: new Date(),
-          user: {
-            _id: 2,
-            name: 'React Native',
-            avatar: 'https://vignette.wikia.nocookie.net/smallville/images/1/13/Gal_Gadot.jpg/revision/latest?cb=20170115102329',
-          },
-        },
-        {
+					user: {
+						_id: 2,
+						name: 'React Native',
+						avatar: 'https://vignette.wikia.nocookie.net/smallville/images/1/13/Gal_Gadot.jpg/revision/latest?cb=20170115102329',
+					},
+				},
+				{
 					_id: 2,
-          text: 'How are you',
+					text: 'How are you',
 					createdAt: new Date(),
-          user: {
-            _id: 2,
-            name: 'React Native',
-            avatar: 'https://vignette.wikia.nocookie.net/smallville/images/1/13/Gal_Gadot.jpg/revision/latest?cb=20170115102329',
-          },
-        },
-        {
+					user: {
+						_id: 2,
+						name: 'React Native',
+						avatar: 'https://vignette.wikia.nocookie.net/smallville/images/1/13/Gal_Gadot.jpg/revision/latest?cb=20170115102329',
+					},
+				},
+				{
 					_id: 3,
-          text: 'Good, you? :)',
+					text: 'Good, you? :)',
 					createdAt: new Date(),
-          user: {
-            _id: 1,
-            name: 'Elliot',
-            avatar: 'https://media.tmz.com/2017/08/16/081617-chris-brown-primary-1.jpg',
-          },
-        },
-        {
+					user: {
+						_id: 1,
+						name: 'Elliot',
+						avatar: 'https://media.tmz.com/2017/08/16/081617-chris-brown-primary-1.jpg',
+					},
+				},
+				{
 					_id: 4,
-          text: 'Not bad :)',
+					text: 'Not bad :)',
 					createdAt: new Date(),
-          user: {
-            _id: 2,
-            name: 'React Native',
-            avatar: 'https://vignette.wikia.nocookie.net/smallville/images/1/13/Gal_Gadot.jpg/revision/latest?cb=20170115102329',
-          },
-        },
-      ],
+					user: {
+						_id: 2,
+						name: 'React Native',
+						avatar: 'https://vignette.wikia.nocookie.net/smallville/images/1/13/Gal_Gadot.jpg/revision/latest?cb=20170115102329',
+					},
+				},
+			],
 		});
 	}
 
-	onLoadEarlier() {
-		setTimeout(() => {}, 2000);
+	handleAction = index => {
+		console.log('ind', index)
+		switch (index) {
+			case 1: // View Profile
+				this.props.homeProfile(this.props.first);
+				break;
+			case 2: // Video Call
+
+				break;
+			case 3: // Voice Call
+
+				break;
+			case 4: // Unmatch
+
+				break;
+			case 5: // Report User
+
+				break;
+			case 6: // Block User
+
+				break;
+			default:
+		}
 	}
 
-	onPressActionButton() {
-		console.log('pressed')
+	onSend = (messages = []) => {
+		this.setState(previousState => ({
+			messages: GiftedChat.append(previousState.messages, messages),
+		}));
 	}
 
-  onSend(messages = []) {
-    this.setState(previousState => ({
-      messages: GiftedChat.append(previousState.messages, messages),
-    }));
+	renderBubble = props => {
+		return (
+			<Bubble
+				{...props}
+				wrapperStyle={{
+					left: {
+						backgroundColor: 'white',
+						shadowColor: colors.lightGray,
+						shadowOffset: { height: 1, width: 1 },
+						shadowOpacity: 1
+					},
+					right: {
+						backgroundColor: colors.offWhite,
+						shadowColor: 'gray',
+						shadowOffset: { height: 1, width: 1 },
+						shadowOpacity: 1
+					},
+				}}
+			/>
+		);
 	}
-	
-	renderActions(props) {
-		return <Actions
-			{...props}
-			icon={() => {return <Icon name='add-a-photo' size={30} />;}} />
+
+	renderCustomActions = props => {
+		if (Platform.OS === 'ios')
+			return <CustomActions {...props} />
+
+		const options = {
+			'Action 1': (props) => {
+				alert('option 1');
+			},
+			'Action 2': (props) => {
+				alert('option 2');
+			},
+			'Cancel': () => { },
+		};
+		return <Actions {...props} options={options} />
+	}
+
+	renderCustomComposer = props => {
+		return <CustomComposer {...props} />
+	}
+
+	renderInputToolbar = props => {
+		return (
+			<InputToolbar
+				{...props}
+				containerStyle={{
+					borderTopColor: 'transparent',
+					bottom: 2
+				}}
+			/>
+		);
+	}
+
+	renderMessageText = props => {
+		return (
+			<MessageText
+				{...props}
+				textStyle={{
+					left: { fontSize: 14 },
+					right: { color: 'black', fontSize: 14 }
+				}}
+			/>
+		);
+	}
+
+	renderTime = props => {
+		return <Time {...props} textStyle={{ right: { color: '#aaa' } }} />
 	}
 
 	render() {
@@ -89,7 +197,11 @@ class Chat extends Component {
 				{/* Header */}
 				<View style={[styles.homeHeader, { backgroundColor: 'transparent' }]}>
 					<View style={styles.centeredView}>
-						<Icon color={constants.lightGray} name='chevron-left' onPress={this.props.homeBack} size={40} />
+						<Icon
+							color={colors.lightGray}
+							name='chevron-left'
+							onPress={this.props.homeBack}
+							size={40} />
 					</View>
 
 					<View style={{ flex: 3 }}>
@@ -97,22 +209,27 @@ class Chat extends Component {
 					</View>
 
 					<View style={styles.centeredView}>
-						<Icon color={constants.lightGray} name='info-outline' size={25} />
+						<Icon
+							color={colors.lightGray}
+							name='info-outline'
+							onPress={() => this.actionSheet.show()}
+							size={25} />
 					</View>
 				</View>
 
 				{/* Body */}
 				<View style={{ flex: 11 }}>
 					<GiftedChat
-						loadEarlier={true}
-						onLoadEarlier={this.onLoadEarlier}
 						messages={this.state.messages}
-						onPressActionButton={this.onPressActionButton}
 						onPressAvatar={user => this.props.homeProfile(user._id)}
-						onSend={messages => this.onSend(messages)}
-						renderActions={this.renderActions}
-						renderAvatarOnTop={true}
-						showAvatarForEveryMessage={true}
+						onSend={this.onSend}
+						renderActions={this.renderCustomActions}
+						renderBubble={this.renderBubble}
+						renderComposer={this.renderCustomComposer}
+						renderInputToolbar={this.renderInputToolbar}
+						renderMessageText={this.renderMessageText}
+						renderSend={() => { }}
+						renderTime={this.renderTime}
 						showUserAvatar={true}
 						user={{
 							_id: 1,
@@ -120,6 +237,13 @@ class Chat extends Component {
 							name: 'Elliot'
 						}} />
 				</View>
+
+				<ActionSheet
+					cancelButtonIndex={0}
+					onPress={this.handleAction}
+					options={options}
+					ref={ref => this.actionSheet = ref}
+					title={'What would you like to do'} />
 			</View>
 		);
 	}

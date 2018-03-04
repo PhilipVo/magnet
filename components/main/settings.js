@@ -15,7 +15,8 @@ import { LoginManager, GraphRequest, GraphRequestManager } from 'react-native-fb
 
 import session from '../../services/session.service';
 
-import styles, { constants } from '../../styles';
+import { colors } from '../../etc/constants';
+import styles from '../../styles';
 
 class Settings extends Component {
 	constructor(props) {
