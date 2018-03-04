@@ -38,12 +38,12 @@ class Profile extends Component {
 					</TouchableHighlight>
 
 					<Text style={{ color: 'white', fontSize: 13, fontWeight: 'bold' }}>Bio:</Text>
-					<ScrollView style={{ height: 100 }}>
-						<Text style={{ color: 'white', fontSize: 12, height: 100, marginHorizontal: 10 }}>
+					<ScrollView style={{ maxHeight: 120 }}>
+						<Text style={{ color: 'white', fontSize: 12, marginHorizontal: 10 }}>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-					</Text>
+						</Text>
 					</ScrollView>
 				</View>
 			</ImageBackground>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		marginBottom: 50,
 		marginLeft: 40,
-		marginTop: 30,
+		marginTop: 20,
 		padding: 2,
 		width: 100
 	}
