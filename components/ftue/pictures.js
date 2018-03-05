@@ -134,7 +134,7 @@ class Pictures extends Component {
 							</LinearGradient>
 						</TouchableHighlight>
 						<TouchableHighlight
-							onPress={() => this.props.appLogin('register')}
+							onPress={() => this.props.setMode('LOGGED_IN')}
 							style={{ flex: 1 }}>
 							<LinearGradient
 								colors={[colors.lightGreen, colors.darkGreen]}
@@ -154,7 +154,8 @@ const mapStateToProps = (state, props) => ({});
 
 const mapDispatchToProps = dispatch => ({
 	ftueBack: () => { dispatch({ type: 'FTUE_BACK' }); },
-	ftueBody: () => { dispatch({ type: 'FTUE_BODY' }); }
+	ftueBody: () => { dispatch({ type: 'FTUE_BODY' }); },
+	setMode: mode => { dispatch({ type: 'SET_MODE', mode: mode }); }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pictures);

@@ -3871,18 +3871,6 @@ react-native-modal-datetime-picker@^4.13.0:
     prop-types "15.5.10"
     react-native-modal "3.1.0"
 
-react-native-modal-dropdown@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/react-native-modal-dropdown/-/react-native-modal-dropdown-0.6.1.tgz#a5e4255ad26f3837a7a23fcf2b851187c24850ed"
-  dependencies:
-    prop-types "^15.6.0"
-
-react-native-modal-selector@^0.0.25:
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/react-native-modal-selector/-/react-native-modal-selector-0.0.25.tgz#40df67afa9e7f2a3da075b7eaec824d5d204b8d1"
-  dependencies:
-    prop-types "^15.5.10"
-
 react-native-modal@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-3.1.0.tgz#3e6911152e9dcd6e15457cf0c24d7fd833c4a57a"
@@ -3907,6 +3895,12 @@ react-native-quick-select@^0.0.4:
 react-native-scrollable-mixin@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-native-scrollable-mixin/-/react-native-scrollable-mixin-1.0.1.tgz#34a32167b64248594154fd0d6a8b03f22740548e"
+
+react-native-swiper@^1.5.13:
+  version "1.5.13"
+  resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.5.13.tgz#fa695cd4ab77b9a9df2d2bfee38ea7274dd07a2e"
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-tab-view@^0.0.74:
   version "0.0.74"

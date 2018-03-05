@@ -70,32 +70,34 @@ class Login extends Component {
 	}
 
 	login = () => {
-		this.props.setMode('NEW_USER');
+
 		// if (!this.state.disabled) {
 		// 	this.setState({
 		// 		disabled: true,
 		// 		error: null
 		// 	});
 
-		// 	if (this.state.mode === 'login') {
-		// 		session.login(this.user)
-		// 			.then(() => this.props.setMode('LOGGED_IN'))
-		// 			.catch(error => {
-		// 				this.setState({
-		// 					disabled: false,
-		// 					error: typeof error === 'string' ? error : 'Oops, something went wrong.',
-		// 				});
-		// 			});
-		// 	} else {
-		// 		session.register(this.user)
-		// 			.then(() => this.props.setMode('NEW_USER'))
-		// 			.catch(error => {
-		// 				this.setState({
-		// 					disabled: false,
-		// 					error: typeof error === 'string' ? error : 'Oops, something went wrong.',
-		// 				});
-		// 			});
-		// 	}
+		if (this.state.mode === 'login') {
+			this.props.setMode('LOGGED_IN');
+			// 		session.login(this.user)
+			// 			.then(() => this.props.setMode('LOGGED_IN'))
+			// 			.catch(error => {
+			// 				this.setState({
+			// 					disabled: false,
+			// 					error: typeof error === 'string' ? error : 'Oops, something went wrong.',
+			// 				});
+			// 			});
+		} else {
+			this.props.setMode('NEW_USER');
+			// 		session.register(this.user)
+			// 			.then(() => this.props.setMode('NEW_USER'))
+			// 			.catch(error => {
+			// 				this.setState({
+			// 					disabled: false,
+			// 					error: typeof error === 'string' ? error : 'Oops, something went wrong.',
+			// 				});
+			// 			});
+		}
 		// }
 	}
 
