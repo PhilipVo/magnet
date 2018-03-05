@@ -3,7 +3,7 @@ import React from 'react';
 import { Platform, StyleSheet, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
-import { colors } from '../../../etc/constants';
+import { colors } from './constants';
 
 export default class Composer extends React.Component {
 	onContentSizeChange(e) {

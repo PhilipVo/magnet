@@ -14,6 +14,18 @@ const mainNavigator = (state = initialNavState, action) => {
 				state
 			);
 			break;
+		case 'MAIN_INVITE':
+			nextState = Navigator.router.getStateForAction(
+				NavigationActions.navigate({ routeName: 'Invite' }),
+				state
+			);
+			break;
+		case 'MAIN_PHOTOS':
+			nextState = Navigator.router.getStateForAction(
+				NavigationActions.navigate({ routeName: 'Photots' }),
+				state
+			);
+			break;
 		case 'MAIN_SETTINGS':
 			nextState = Navigator.router.getStateForAction(
 				NavigationActions.navigate({ routeName: 'Settings' }),

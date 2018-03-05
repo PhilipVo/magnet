@@ -4,18 +4,20 @@ import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
 import Chat from '../components/main/home/chat';
 import Home from '../components/main/home/home';
+import Photos from '../components/main/home/photos';
 import Profile from '../components/main/home/profile';
 
 const Navigator = StackNavigator(
 	{
 		Chat: { screen: Chat },
 		Home: { screen: Home },
+		Photos: { screen: Photos },
 		Profile: { screen: Profile }
 	},
 	{
-		cardStyle: { backgroundColor: 'transparent' },
+		cardStyle: { backgroundColor: 'white' },
 		headerMode: 'none',
-		initialRouteName: 'Profile'
+		initialRouteName: 'Home'
 	}
 );
 

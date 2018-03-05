@@ -20,12 +20,19 @@ const homeNavigator = (state = initialNavState, action) => {
 				state
 			);
 			break;
+		case 'HOME_PHOTOS':
+			nextState = Navigator.router.getStateForAction(
+				NavigationActions.navigate({ routeName: 'Photos', params: action.params }),
+				state
+			);
+			break;
 		case 'HOME_PROFILE':
 			nextState = Navigator.router.getStateForAction(
 				NavigationActions.navigate({ routeName: 'Profile', params: action.params }),
 				state
 			);
 			break;
+
 		default:
 			nextState = Navigator.router.getStateForAction(action, state);
 			break;

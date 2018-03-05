@@ -12,10 +12,10 @@ import {
 } from 'react-native-gifted-chat';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
-import CustomActions from './custom-actions';
-import CustomComposer from './custom-composer';
-
 import { colors } from '../../../etc/constants';
+import CustomActions from '../../../etc/custom-actions';
+import CustomComposer from '../../../etc/custom-composer';
+
 import styles from '../../../styles';
 
 const options = [

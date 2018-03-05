@@ -33,7 +33,10 @@ class Profile extends Component {
 						Amazonian, 12mi
 					</Text>
 
-					<TouchableHighlight style={styles.viewPhotos}>
+					<TouchableHighlight
+						onPress={() => this.props.homePhotos(this.props.id)}
+						style={styles.viewPhotos}
+						underlayColor='transparent'>
 						<Text style={{ color: 'white', fontSize: 10 }}>View Photos</Text>
 					</TouchableHighlight>
 
@@ -78,10 +81,13 @@ const styles = StyleSheet.create({
 	}
 });
 
-const mapStateToProps = state => ({});
+const mapStateToProps = (state, props) => ({
+	id: props.navigation.state.params.id
+});
 
 const mapDispatchToProps = dispatch => ({
-	homeBack: () => dispatch({ type: 'HOME_BACK' })
+	homeBack: () => dispatch({ type: 'HOME_BACK' }),
+	homePhotos: id => dispatch({ type: 'HOME_PHOTOS', params: { id: id } })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

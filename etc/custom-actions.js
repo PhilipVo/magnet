@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import ImagePicker from 'react-native-image-crop-picker';
 
-import { colors } from '../../../etc/constants';
+import { colors } from './constants';
 
 export default class CustomActions extends React.Component {
 	openCamera = () => {
