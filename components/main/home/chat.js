@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, Text, TextInput, View } from 'react-native';
+import { Platform, StyleSheet, Text, TextInput, View } from 'react-native';
 import { connect } from 'react-redux';
 import { ActionSheetCustom as ActionSheet } from 'react-native-custom-actionsheet';
 import {
@@ -15,8 +15,6 @@ import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import { colors } from '../../../etc/constants';
 import CustomActions from '../../../etc/custom-actions';
 import CustomComposer from '../../../etc/custom-composer';
-
-import styles from '../../../styles';
 
 const options = [
 	'Cancel',
@@ -169,7 +167,7 @@ class Chat extends Component {
 				{...props}
 				containerStyle={{
 					borderTopColor: 'transparent',
-					bottom: 2
+					bottom: 4
 				}}
 			/>
 		);
@@ -180,8 +178,8 @@ class Chat extends Component {
 			<MessageText
 				{...props}
 				textStyle={{
-					left: { fontSize: 14 },
-					right: { color: 'black', fontSize: 14 }
+					left: { fontSize: 16 },
+					right: { color: 'black', fontSize: 16 }
 				}}
 			/>
 		);
@@ -195,8 +193,8 @@ class Chat extends Component {
 		return (
 			<View style={{ backgroundColor: 'white', flex: 1 }}>
 				{/* Header */}
-				<View style={[styles.homeHeader, { backgroundColor: 'transparent' }]}>
-					<View style={styles.centeredView}>
+				<View style={styles.header}>
+					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center'}}>
 						<Icon
 							color={colors.lightGray}
 							name='chevron-left'
@@ -208,7 +206,7 @@ class Chat extends Component {
 						<Text style={{ fontWeight: 'bold', textAlign: 'center' }}>{this.props.first}</Text>
 					</View>
 
-					<View style={styles.centeredView}>
+					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center'}}>
 						<Icon
 							color={colors.lightGray}
 							name='info-outline'
@@ -248,6 +246,17 @@ class Chat extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	header: {
+		alignItems: 'center',
+		backgroundColor: 'transparent',
+		flex: 1,
+		flexDirection: 'row',
+		paddingTop: 10,
+		justifyContent: 'space-around'
+	},
+});
 
 const mapStateToProps = (state, props) => ({
 	first: props.navigation.state.params.first

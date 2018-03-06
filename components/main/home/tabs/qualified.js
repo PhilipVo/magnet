@@ -11,8 +11,6 @@ import { connect } from 'react-redux';
 
 import http from '../../../../services/http.service';
 
-import styles from '../../../../styles';
-
 class Qualified extends Component {
 	constructor(props) {
 		super(props);

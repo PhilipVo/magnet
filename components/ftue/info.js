@@ -3,6 +3,7 @@ import {
 	Image,
 	Keyboard,
 	KeyboardAvoidingView,
+	StyleSheet,
 	Text,
 	TextInput,
 	TouchableHighlight,
@@ -20,7 +21,6 @@ import moment from 'moment';
 import http from '../../services/http.service';
 
 import { colors } from '../../etc/constants';
-import styles from '../../styles';
 
 class Info extends Component {
 	constructor(props) {
@@ -86,30 +86,30 @@ class Info extends Component {
 						</View>
 
 						{/* Body */}
-						<View style={{ flex: 3 }}>
+						<View style={{ flex: 4 }}>
 							<Text style={styles.whiteText}>Please provide the following information:</Text>
 
 							<TouchableHighlight
 								onPress={() => { this.actionSheetPicture.show() }}
-								style={{ alignSelf: 'center', marginTop: 50 }}>
+								style={{ alignSelf: 'center', marginTop: 30 }}>
 								{
 									this.state.path ?
 										<Image
 											source={{ uri: this.state.path }}
-											style={{ backgroundColor: 'white', borderRadius: 50, height: 100, width: 100 }} /> :
+											style={{ backgroundColor: 'white', borderRadius: 75, height: 150, width: 150 }} /> :
 										<View style={{
 											backgroundColor: 'rgba(255,255,255,0.5)',
-											borderRadius: 50,
+											borderRadius: 75,
 											borderColor: 'white',
 											borderWidth: 2,
-											height: 100,
-											width: 100
+											height: 150,
+											width: 150
 										}} />
 								}
 							</TouchableHighlight>
 							<Text style={[styles.whiteText, { fontSize: 10 }]}>Select a profile picture</Text>
 
-							<View style={{ margin: 50 }}>
+							<View style={{ margin: 30 }}>
 								{/* First Name */}
 								<TextInput
 									autoCorrect={false}
@@ -129,7 +129,7 @@ class Info extends Component {
 								<View style={{ flexDirection: 'row' }}>
 									{/* Birthday */}
 									<TouchableHighlight onPress={() => this.setState({ isVisible: true })} style={{ flex: 1 }}>
-										<View style={[styles.inputView, { justifyContent: 'center' }]}>
+										<View style={styles.inputView}>
 											<Text style={{ color: this.state.birthday ? 'black' : 'rgb(200,200,200)', fontSize: 16 }}>
 												{this.state.birthday ? moment(this.state.birthday).format('MMM D, YYYY') : 'Birthday'}
 											</Text>
@@ -140,7 +140,7 @@ class Info extends Component {
 
 									{/* Gender */}
 									<TouchableHighlight onPress={() => this.actionSheetGender.show()} style={{ flex: 1 }}>
-										<View style={[styles.inputView, { justifyContent: 'center' }]}>
+										<View style={styles.inputView}>
 											<Text style={{ color: this.state.gender ? 'black' : 'rgb(200,200,200)', fontSize: 16 }}>
 												{this.state.gender || 'Gender'}
 											</Text>
@@ -221,6 +221,35 @@ class Info extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	bottomButton: {
+		alignItems: 'center',
+		flex: 1,
+		height: 50,
+		justifyContent: 'center'
+	},
+	input: {
+		backgroundColor: 'white',
+		color: 'black',
+		fontSize: 16,
+		height: 50,
+		marginBottom: 10,
+		padding: 10
+	},
+	inputView: {
+		backgroundColor: 'white',
+		height: 50,
+		justifyContent: 'center',
+		marginBottom: 10,
+		padding: 10
+	},
+	whiteText: {
+		backgroundColor: 'transparent',
+		color: 'white',
+		textAlign: 'center'
+	},
+});
 
 const mapStateToProps = (state, props) => ({});
 

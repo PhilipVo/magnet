@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import { SegmentedControlIOS, StatusBar, Text, TextInput, View } from 'react-native';
+import {
+	SegmentedControlIOS,
+	StatusBar,
+	StyleSheet,
+	Text,
+	TextInput,
+	View
+} from 'react-native';
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
 import { TabsNavigator } from '../../../navigators/tabs.navigator';
 
 import { colors } from '../../../etc/constants';
-import styles from '../../../styles';
 
 class Home extends Component {
 	render() {
@@ -15,8 +21,8 @@ class Home extends Component {
 				<StatusBar barStyle='dark-content' />
 
 				{/* Header */}
-				<View style={styles.homeHeader}>
-					<View style={styles.centeredView}>
+				<View style={styles.header}>
+					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
 						<Icon color={colors.darkGray} name='menu' onPress={this.props.mainToggle} size={40} />
 					</View>
 					<View style={{ flex: 3 }}>
@@ -26,7 +32,7 @@ class Home extends Component {
 							onValueChange={this.props.tabsToggle}
 							style={{ flex: 1, marginVertical: 10 }} />
 					</View>
-					<View style={styles.centeredView}>
+					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
 						<Icon color={colors.darkGray} name='menu' size={40} />
 					</View>
 				</View>
@@ -53,6 +59,24 @@ class Home extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	header: {
+		alignItems: 'center',
+		backgroundColor: colors.lightGray,
+		flex: 1,
+		flexDirection: 'row',
+		paddingTop: 10,
+		justifyContent: 'space-around'
+	},
+	searchInput: {
+		backgroundColor: colors.offWhite,
+		borderRadius: 5,
+		margin: 5,
+		padding: 12,
+		paddingLeft: 30,
+	},
+});
 
 const mapStateToProps = state => ({});
 

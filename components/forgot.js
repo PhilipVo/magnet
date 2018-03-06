@@ -16,7 +16,6 @@ import { LoginManager, GraphRequest, GraphRequestManager } from 'react-native-fb
 import session from '../services/session.service';
 
 import { colors } from '../etc/constants';
-import styles from '../styles';
 
 class Login extends Component {
 	constructor(props) {
@@ -152,6 +151,32 @@ class Login extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	button: {
+		height: 50,
+		justifyContent: 'center',
+		padding: 5,
+	},
+	buttonText: {
+		color: 'white',
+		fontSize: 16,
+		textAlign: 'center'
+	},
+	input: {
+		backgroundColor: 'white',
+		color: 'black',
+		fontSize: 16,
+		height: 50,
+		marginBottom: 10,
+		padding: 10
+	},
+	whiteText: {
+		backgroundColor: 'transparent',
+		color: 'white',
+		textAlign: 'center'
+	},
+});
 
 const mapStateToProps = state => ({
 	mode: state.session

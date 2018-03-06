@@ -16,7 +16,7 @@ class Profile extends Component {
 
 				{/* Header */}
 				<View style={styles.header}>
-					<View style={styles.centeredView}>
+					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
 						<Icon color={colors.lightGray} name='chevron-left' onPress={this.props.homeBack} size={40} />
 					</View>
 					<View style={{ flex: 4 }} />
@@ -29,7 +29,7 @@ class Profile extends Component {
 						<Text style={{ color: 'white', fontSize: 40 }}>{this.props.first || 'Gal Gadot'}</Text>
 					</View>
 
-					<Text style={{ color: 'white', fontSize: 11, fontWeight: 'bold', marginLeft: 50 }}>
+					<Text style={{ color: 'white', fontSize: 12, fontWeight: 'bold', marginLeft: 50 }}>
 						Amazonian, 12mi
 					</Text>
 
@@ -37,12 +37,12 @@ class Profile extends Component {
 						onPress={() => this.props.homePhotos(this.props.id)}
 						style={styles.viewPhotos}
 						underlayColor='transparent'>
-						<Text style={{ color: 'white', fontSize: 10 }}>View Photos</Text>
+						<Text style={{ color: 'white', fontSize: 11 }}>View Photos</Text>
 					</TouchableHighlight>
 
-					<Text style={{ color: 'white', fontSize: 13, fontWeight: 'bold' }}>Bio:</Text>
-					<ScrollView style={{ maxHeight: 120 }}>
-						<Text style={{ color: 'white', fontSize: 12, marginHorizontal: 10 }}>
+					<Text style={{ color: 'white', fontSize: 15, fontWeight: 'bold' }}>Bio:</Text>
+					<ScrollView style={{ maxHeight: 150 }}>
+						<Text style={{ color: 'white', fontSize: 14, marginHorizontal: 10 }}>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

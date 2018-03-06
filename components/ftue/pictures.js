@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
 	Image,
+	StyleSheet,
 	Text,
 	TextInput,
 	TouchableHighlight,
@@ -16,7 +17,6 @@ import moment from 'moment';
 import http from '../../services/http.service';
 
 import { colors } from '../../etc/constants';
-import styles from '../../styles';
 
 const options = ['Cancel', 'Male', 'Female'];
 
@@ -51,7 +51,7 @@ class Pictures extends Component {
 				</View>
 
 				{/* Body */}
-				<View style={{ flex: 3 }}>
+				<View style={{ flex: 4 }}>
 					<TouchableHighlight
 						onPress={this.openPicker}
 						style={{ flex: 2 }}>
@@ -149,6 +149,20 @@ class Pictures extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	bottomButton: {
+		alignItems: 'center',
+		flex: 1,
+		height: 50,
+		justifyContent: 'center'
+	},
+	whiteText: {
+		backgroundColor: 'transparent',
+		color: 'white',
+		textAlign: 'center'
+	},
+});
 
 const mapStateToProps = (state, props) => ({});
 

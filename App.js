@@ -11,8 +11,6 @@ import { connect } from 'react-redux';
 
 import session from './services/session.service';
 
-import styles from './styles';
-
 class App extends Component {
 	componentDidMount() {
 		AsyncStorage.getItem('magnetToken')
@@ -26,17 +24,17 @@ class App extends Component {
 	}
 
 	render() {
-		let Navigator = null;
-		if (this.props.mode === 'LOGGED_IN') {
-			const MainNavigator = require('./navigators/main.navigator').MainNavigator;
-			Navigator = <MainNavigator />
-		} else if (this.props.mode === 'LOGGED_OUT') {
-			const AppNavigator = require('./navigators/app.navigator').AppNavigator;
-			Navigator = <AppNavigator />
-		} else if (this.props.mode === 'NEW_USER') {
-			const FTUENavigator = require('./navigators/ftue.navigator').FTUENavigator;
-			Navigator = <FTUENavigator />
-		}
+		// let Navigator = null;
+		// if (this.props.mode === 'LOGGED_IN') {
+		const MainNavigator = require('./navigators/main.navigator').MainNavigator;
+		Navigator = <MainNavigator />
+		// } else if (this.props.mode === 'LOGGED_OUT') {
+		// 	const AppNavigator = require('./navigators/app.navigator').AppNavigator;
+		// 	Navigator = <AppNavigator />
+		// } else if (this.props.mode === 'NEW_USER') {
+		// 	const FTUENavigator = require('./navigators/ftue.navigator').FTUENavigator;
+		// 	Navigator = <FTUENavigator />
+		// }
 
 		return (
 			<View style={{ flex: 1 }}>
@@ -51,6 +49,14 @@ class App extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	background: {
+		height: Dimensions.get('window').height,
+		position: 'absolute',
+		width: Dimensions.get('window').width
+	}
+});
 
 const mapStateToProps = state => ({
 	mode: state.mode

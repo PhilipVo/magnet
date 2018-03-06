@@ -16,7 +16,6 @@ import { LoginManager, GraphRequest, GraphRequestManager } from 'react-native-fb
 import session from '../../services/session.service';
 
 import { colors } from '../../etc/constants';
-import styles from '../../styles';
 
 class Settings extends Component {
 	constructor(props) {
@@ -180,13 +179,6 @@ class Settings extends Component {
 								</View>
 							</View>
 
-							{/* Or */}
-							<View style={styles.orView}>
-								<View style={styles.orDivider} />
-								<Text style={styles.or}>   or   </Text>
-								<View style={styles.orDivider} />
-							</View>
-
 							{/* Facebook */}
 							<TouchableHighlight
 								onPress={this.facebookLogin}
@@ -205,6 +197,44 @@ class Settings extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	already: {
+		backgroundColor: 'transparent',
+		color: 'white',
+		fontSize: 10,
+		fontWeight: 'bold'
+	},
+	button: {
+		height: 50,
+		justifyContent: 'center',
+		padding: 5,
+	},
+	buttonText: {
+		color: 'white',
+		fontSize: 16,
+		textAlign: 'center'
+	},
+	input: {
+		backgroundColor: 'white',
+		color: 'black',
+		fontSize: 16,
+		height: 50,
+		marginBottom: 10,
+		padding: 10
+	},
+	sign: {
+		backgroundColor: 'transparent',
+		color: colors.blue,
+		fontSize: 10,
+		fontWeight: 'bold'
+	},
+	whiteText: {
+		backgroundColor: 'transparent',
+		color: 'white',
+		textAlign: 'center'
+	},
+});
 
 const mapStateToProps = state => ({
 	mode: state.session

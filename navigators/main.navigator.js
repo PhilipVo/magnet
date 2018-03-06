@@ -24,7 +24,7 @@ const Navigator = DrawerNavigator(
 				<View style={{ alignItems: 'center', flex: 2, justifyContent: 'center' }}>
 					<Image
 						source={{ uri: 'https://media.tmz.com/2017/08/16/081617-chris-brown-primary-1.jpg' }}
-						style={{ borderRadius: 50, height: 100, width: 100 }} />
+						style={{ borderRadius: 75, height: 150, width: 150 }} />
 					<Text style={{ color: 'white', fontSize: 20, marginTop: 10 }}>Elliot Young</Text>
 				</View>
 
@@ -51,10 +51,9 @@ const Navigator = DrawerNavigator(
 			activeTintColor: 'white',
 			inactiveTintColor: 'white',
 			itemStyle: { borderBottomColor: 'white', borderBottomWidth: 1 },
-			labelStyle: { fontSize: 16, margin: 0, marginTop: 20 },
+			labelStyle: { fontSize: 16, margin: 0, marginTop: 25 },
 		},
 		drawerBackgroundColor: colors.blue,
-		drawerWidth: 200,
 		initialRouteName: 'Home',
 		order: ['Home', 'Invite Friends', 'My Photos', 'Settings']
 	}

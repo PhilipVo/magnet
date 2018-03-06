@@ -50,7 +50,7 @@ export default class Composer extends React.Component {
 					color={valid ? colors.blue : colors.lightGray}
 					name='send'
 					onPress={() => valid && this.props.onSend({ text: this.props.text.trim() }, true)}
-					size={20}
+					size={25}
 					style={{ alignSelf: 'flex-end', marginBottom: 10, marginRight: 10 }} />
 			</View>
 		);
@@ -68,15 +68,15 @@ const styles = StyleSheet.create({
 	},
 	textInput: {
 		flex: 1,
-		fontSize: 14,
-		lineHeight: 14,
+		fontSize: 16,
+		lineHeight: 16,
 		marginHorizontal: 10,
 		marginTop: Platform.select({
-			ios: 5,
+			ios: 6,
 			android: 0,
 		}),
 		marginBottom: Platform.select({
-			ios: 4,
+			ios: 5,
 			android: 3,
 		}),
 	},

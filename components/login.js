@@ -3,6 +3,7 @@ import {
 	Image,
 	Keyboard,
 	KeyboardAvoidingView,
+	StyleSheet,
 	Text,
 	TextInput,
 	TouchableHighlight,
@@ -16,7 +17,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import session from '../services/session.service';
 
 import { colors } from '../etc/constants';
-import styles from '../styles';
 
 class Login extends Component {
 	constructor(props) {
@@ -209,6 +209,60 @@ class Login extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	already: {
+		backgroundColor: 'transparent',
+		color: 'white',
+		fontSize: 10,
+		fontWeight: 'bold'
+	},
+	button: {
+		height: 50,
+		justifyContent: 'center',
+		padding: 5,
+	},
+	buttonText: {
+		color: 'white',
+		fontSize: 16,
+		textAlign: 'center'
+	},
+	input: {
+		backgroundColor: 'white',
+		color: 'black',
+		fontSize: 16,
+		height: 50,
+		marginBottom: 10,
+		padding: 10
+	},
+	or: {
+		backgroundColor: 'transparent',
+		color: 'white',
+		fontWeight: 'bold'
+	},
+	orDivider: {
+		backgroundColor: 'white',
+		height: 0.5,
+		width: 100
+	},
+	orView: {
+		alignItems: 'center',
+		flexDirection: 'row',
+		justifyContent: 'center',
+		marginVertical: 15
+	},
+	sign: {
+		backgroundColor: 'transparent',
+		color: colors.blue,
+		fontSize: 10,
+		fontWeight: 'bold'
+	},
+	whiteText: {
+		backgroundColor: 'transparent',
+		color: 'white',
+		textAlign: 'center'
+	},
+});
 
 const mapStateToProps = (state, props) => ({
 	mode: props.navigation.state.params.mode

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Image, Text, TouchableHighlight, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { colors } from '../etc/constants';
-import styles from '../styles';
 
 class Welcome extends Component {
 	render() {
@@ -47,6 +46,20 @@ class Welcome extends Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	bottomButton: {
+		alignItems: 'center',
+		flex: 1,
+		height: 50,
+		justifyContent: 'center'
+	},
+	whiteText: {
+		backgroundColor: 'transparent',
+		color: 'white',
+		textAlign: 'center'
+	},
+});
 
 const mapStateToProps = state => ({});
 

@@ -24,8 +24,18 @@ export default class CustomActions extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Icon color={colors.lightGray} name='photo-camera' onPress={this.openCamera} size={30} />
-				<Icon color={colors.lightGray} name='photo' onPress={this.openPicker} size={30} />
+				<Icon
+					color={colors.lightGray}
+					name='photo-camera'
+					onPress={this.openCamera}
+					size={35}
+					underlayColor={colors.blue} />
+				<Icon
+					color={colors.lightGray}
+					name='photo'
+					onPress={this.openPicker}
+					size={35}
+					underlayColor={colors.blue} />
 			</View>
 		);
 	}
@@ -37,6 +47,6 @@ const styles = StyleSheet.create({
 		flex: 0.25,
 		flexDirection: 'row',
 		justifyContent: 'space-around',
-		marginBottom: 8
+		marginBottom: 6
 	}
 });
