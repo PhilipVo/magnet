@@ -32,7 +32,6 @@ const homeNavigator = (state = initialNavState, action) => {
 				state
 			);
 			break;
-
 		default:
 			nextState = Navigator.router.getStateForAction(action, state);
 			break;

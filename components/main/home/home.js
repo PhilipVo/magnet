@@ -16,6 +16,7 @@ import { colors } from '../../../etc/constants';
 
 class Home extends Component {
 	render() {
+		console.log('this.st', this.props.tab)
 		return (
 			<View style={{ flex: 1 }}>
 				<StatusBar barStyle='dark-content' />
@@ -78,7 +79,9 @@ const styles = StyleSheet.create({
 	},
 });
 
-const mapStateToProps = state => ({});
+const mapStateToProps = (state, props) => ({
+	tab: props.navigation.state
+});
 
 const mapDispatchToProps = dispatch => ({
 	mainToggle: () => dispatch({ type: 'MAIN_TOGGLE' }),

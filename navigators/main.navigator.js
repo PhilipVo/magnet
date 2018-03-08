@@ -6,7 +6,7 @@ import { addNavigationHelpers, DrawerItems, DrawerNavigator } from 'react-naviga
 import { HomeNavigator } from './home.navigator';
 
 import Invite from '../components/main/invite';
-import Photos from '../components/main/photos';
+import MyPhotos from '../components/main/my-photos';
 import Settings from '../components/main/settings';
 
 import { colors } from '../etc/constants';
@@ -15,7 +15,7 @@ const Navigator = DrawerNavigator(
 	{
 		Home: { screen: HomeNavigator },
 		'Invite Friends': { screen: Invite },
-		'My Photos': { screen: Photos },
+		'My Photos': { screen: MyPhotos },
 		Settings: { screen: Settings },
 	},
 	{
@@ -29,13 +29,45 @@ const Navigator = DrawerNavigator(
 				</View>
 
 				<View style={{ flex: 2, marginLeft: 20 }} >
-					<DrawerItems {...props} />
-					<View style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}>
+					<TouchableHighlight
+						onPress={() => props.navigation.navigate('Home')}
+						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}>
+						<Text
+							style={{ color: 'white', fontWeight: 'bold', fontSize: 16, marginTop: 16 }}>
+							Home
+						</Text>
+					</TouchableHighlight>
+					<TouchableHighlight
+						onPress={() => { }}
+						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}>
+						<Text
+							style={{ color: 'white', fontWeight: 'bold', fontSize: 16, marginTop: 16 }}>
+							Invite Friends
+						</Text>
+					</TouchableHighlight><TouchableHighlight
+						onPress={() => props.navigation.navigate('My Photos')}
+						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}>
+						<Text
+							style={{ color: 'white', fontWeight: 'bold', fontSize: 16, marginTop: 16 }}>
+							My Photos
+						</Text>
+					</TouchableHighlight>
+					<TouchableHighlight
+						onPress={() => props.navigation.navigate('Settings')}
+						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}>
+						<Text
+							style={{ color: 'white', fontWeight: 'bold', fontSize: 16, marginTop: 16 }}>
+							Settings
+						</Text>
+					</TouchableHighlight>
+					<TouchableHighlight
+						onPress={() => { }}
+						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}>
 						<Text
 							style={{ color: 'white', fontWeight: 'bold', fontSize: 16, marginTop: 16 }}>
 							Logout
 						</Text>
-					</View>
+					</TouchableHighlight>
 				</View>
 
 				<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
@@ -54,8 +86,7 @@ const Navigator = DrawerNavigator(
 			labelStyle: { fontSize: 16, margin: 0, marginTop: 25 },
 		},
 		drawerBackgroundColor: colors.blue,
-		initialRouteName: 'Home',
-		order: ['Home', 'Invite Friends', 'My Photos', 'Settings']
+		initialRouteName: 'My Photos'
 	}
 );
 

@@ -194,7 +194,7 @@ class Chat extends Component {
 			<View style={{ backgroundColor: 'white', flex: 1 }}>
 				{/* Header */}
 				<View style={styles.header}>
-					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center'}}>
+					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
 						<Icon
 							color={colors.lightGray}
 							name='chevron-left'
@@ -203,10 +203,12 @@ class Chat extends Component {
 					</View>
 
 					<View style={{ flex: 3 }}>
-						<Text style={{ fontWeight: 'bold', textAlign: 'center' }}>{this.props.first}</Text>
+						<Text style={{ color: colors.darkGray, fontWeight: 'bold', textAlign: 'center' }}>
+							{this.props.first}
+						</Text>
 					</View>
 
-					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center'}}>
+					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
 						<Icon
 							color={colors.lightGray}
 							name='info-outline'

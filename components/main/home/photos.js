@@ -11,8 +11,6 @@ import { connect } from 'react-redux';
 import Swiper from 'react-native-swiper';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
-import { TabsNavigator } from '../../../navigators/tabs.navigator';
-
 import { colors } from '../../../etc/constants';
 
 class Photos extends Component {
@@ -94,7 +92,9 @@ class Photos extends Component {
 						<Icon color={colors.lightGray} name='chevron-left' onPress={this.props.homeBack} size={40} />
 					</View>
 					<View style={{ flex: 3 }}>
-						<Text style={{ fontWeight: 'bold', textAlign: 'center' }}>Photos</Text>
+						<Text style={{ color: colors.darkGray, fontWeight: 'bold', textAlign: 'center' }}>
+							Photos
+						</Text>
 					</View>
 					<View style={{ flex: 1 }} />
 				</View>

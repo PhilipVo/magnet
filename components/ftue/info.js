@@ -31,22 +31,9 @@ class Info extends Component {
 			first: '',
 			gender: '',
 			isVisible: false,
-			keyboard: false,
 			last: '',
 			path: '',
 		};
-	}
-
-	componentWillMount() {
-		this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow',
-			() => this.setState({ keyboard: true }));
-		this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide',
-			() => this.setState({ keyboard: false }));
-	}
-
-	componentWillUnmount() {
-		this.keyboardWillShowListener.remove();
-		this.keyboardWillHideListener.remove();
 	}
 
 	openCamera = () => {
@@ -153,23 +140,20 @@ class Info extends Component {
 
 						{/* Footer */}
 						<View style={{ flex: 1, justifyContent: 'flex-end' }}>
-							{
-								!this.state.keyboard &&
-								<View style={{ flexDirection: 'row' }}>
-									<View style={styles.bottomButton} />
-									<TouchableOpacity
-										disabled={!valid}
-										onPress={this.props.ftuePictures}
-										style={{ flex: 1 }}>
-										<LinearGradient
-											colors={valid ? [colors.green, colors.darkGreen] :
-												[colors.lightGray, colors.darkGray]}
-											style={[styles.bottomButton, { backgroundColor: colors.green }]}>
-											<Text style={[styles.whiteText, { fontWeight: 'bold' }]}>Continue</Text>
-										</LinearGradient>
-									</TouchableOpacity>
-								</View>
-							}
+							<View style={{ flexDirection: 'row' }}>
+								<View style={styles.bottomButton} />
+								<TouchableOpacity
+									disabled={!valid}
+									onPress={this.props.ftuePictures}
+									style={{ flex: 1 }}>
+									<LinearGradient
+										colors={valid ? [colors.green, colors.darkGreen] :
+											[colors.lightGray, colors.darkGray]}
+										style={[styles.bottomButton, { backgroundColor: colors.green }]}>
+										<Text style={[styles.whiteText, { fontWeight: 'bold' }]}>Continue</Text>
+									</LinearGradient>
+								</TouchableOpacity>
+							</View>
 						</View>
 
 						{/* Birthday picker */}
