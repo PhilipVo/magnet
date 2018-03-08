@@ -5,6 +5,7 @@ import ftueNavigator from './ftue-navigator.reducer';
 import homeNavigator from './home-navigator.reducer';
 import mainNavigator from './main-navigator.reducer';
 import mode from './mode.reducer';
+import settingsNavigator from './settings-navigator.reducer';
 import tabsNavigator from './tabs-navigator.reducer';
 
 const reducer = combineReducers({
@@ -13,6 +14,7 @@ const reducer = combineReducers({
 	homeNavigator,
 	mainNavigator,
 	mode,
+	settingsNavigator,
 	tabsNavigator
 });
 

@@ -16,7 +16,6 @@ import { colors } from '../../../etc/constants';
 
 class Home extends Component {
 	render() {
-		console.log('this.st', this.props.tab)
 		return (
 			<View style={{ flex: 1 }}>
 				<StatusBar barStyle='dark-content' />
@@ -29,7 +28,7 @@ class Home extends Component {
 					<View style={{ flex: 3 }}>
 						<SegmentedControlIOS
 							values={['Qualified', 'Prospects']}
-							selectedIndex={0}
+							selectedIndex={this.props.tab}
 							onValueChange={this.props.tabsToggle}
 							style={{ flex: 1, marginVertical: 10 }} />
 					</View>
@@ -79,8 +78,8 @@ const styles = StyleSheet.create({
 	},
 });
 
-const mapStateToProps = (state, props) => ({
-	tab: props.navigation.state
+const mapStateToProps = state => ({
+	tab: state.tabsNavigator.index
 });
 
 const mapDispatchToProps = dispatch => ({

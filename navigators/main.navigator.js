@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers, DrawerItems, DrawerNavigator } from 'react-navigation';
 
 import { HomeNavigator } from './home.navigator';
+import { SettingsNavigator } from './settings.navigator';
 
 import Invite from '../components/main/invite';
 import MyPhotos from '../components/main/my-photos';
-import Settings from '../components/main/settings';
 
 import { colors } from '../etc/constants';
 
@@ -16,7 +16,7 @@ const Navigator = DrawerNavigator(
 		Home: { screen: HomeNavigator },
 		'Invite Friends': { screen: Invite },
 		'My Photos': { screen: MyPhotos },
-		Settings: { screen: Settings },
+		Settings: { screen: SettingsNavigator }
 	},
 	{
 		contentComponent: props => (
@@ -86,7 +86,7 @@ const Navigator = DrawerNavigator(
 			labelStyle: { fontSize: 16, margin: 0, marginTop: 25 },
 		},
 		drawerBackgroundColor: colors.blue,
-		initialRouteName: 'My Photos'
+		initialRouteName: 'Settings'
 	}
 );
 

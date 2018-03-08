@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
+import Home from '../components/main/home';
 import Chat from '../components/main/home/chat';
-import Home from '../components/main/home/home';
 import Photos from '../components/main/home/photos';
 import Profile from '../components/main/home/profile';
 

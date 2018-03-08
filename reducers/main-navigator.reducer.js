@@ -20,9 +20,9 @@ const mainNavigator = (state = initialNavState, action) => {
 				state
 			);
 			break;
-		case 'MAIN_PHOTOS':
+		case 'MAIN_MY_PHOTOS':
 			nextState = Navigator.router.getStateForAction(
-				NavigationActions.navigate({ routeName: 'Photots' }),
+				NavigationActions.navigate({ routeName: 'My Photos' }),
 				state
 			);
 			break;

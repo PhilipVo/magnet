@@ -14,6 +14,7 @@ const Navigator = TabNavigator(
 		headerMode: 'none',
 		initialRouteName: 'Qualified',
 		navigationOptions: { tabBarVisible: false },
+		order: ['Qualified', 'Prospects'],
 		tabBarOptions: { showLabel: false }
 	}
 );
