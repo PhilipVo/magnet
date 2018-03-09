@@ -80,7 +80,7 @@ class Qualified extends Component {
 
 								<View style={{ flex: 4 }}>
 									<Text style={{ fontSize: 18, fontWeight: 'bold' }}>{item.first}</Text>
-									<Text style={{ fontSize: 11 }}>{item.message}</Text>
+									<Text style={{ fontSize: 12 }}>{item.message}</Text>
 								</View>
 							</View>
 						</TouchableHighlight>

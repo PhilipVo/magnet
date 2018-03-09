@@ -30,7 +30,7 @@ class Forgot extends Component {
 				onPress={Keyboard.dismiss}>
 				<View style={{ flex: 1 }}>
 					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'flex-end' }}>
-						<Text style={{ color: 'white', fontSize: 16, marginBottom: 10 }}>
+						<Text style={{ color: 'white', fontSize: 18, marginBottom: 10 }}>
 							It happens sometimes.
 						</Text>
 						<Text style={{ color: 'white', textAlign: 'center' }}>
@@ -74,7 +74,7 @@ class Forgot extends Component {
 
 						<Text
 							onPress={this.props.appBack}
-							style={{ color: colors.blue, fontSize: 10, fontWeight: 'bold', marginVertical: 5 }}>
+							style={{ color: colors.blue, fontSize: 12, fontWeight: 'bold', marginVertical: 5 }}>
 							Go Back to Login Screen
 						</Text>
 

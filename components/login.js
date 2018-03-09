@@ -114,7 +114,7 @@ class Login extends Component {
 					<KeyboardAvoidingView behavior={'padding'} style={{ flex: 1 }}>
 
 						<View style={{ alignItems: 'center', flex: 1, justifyContent: 'flex-end' }}>
-							<Text style={{ color: 'white', fontSize: 16, marginBottom: 10 }}>
+							<Text style={{ color: 'white', fontSize: 18, marginBottom: 10 }}>
 								{this.state.mode === 'register' ? 'Welcome to Magnet' : 'Welcome Back'}
 							</Text>
 							<Text style={{ color: 'white', textAlign: 'center' }}>
@@ -161,7 +161,7 @@ class Login extends Component {
 								this.state.mode === 'login' &&
 								<Text
 									onPress={this.props.forgot}
-									style={{ alignSelf: 'flex-end', color: 'white', fontSize: 10, fontWeight: 'bold' }}>
+									style={{ alignSelf: 'flex-end', color: 'white', fontSize: 12, fontWeight: 'bold' }}>
 									Forgot Password?
 								</Text>
 							}
@@ -185,7 +185,7 @@ class Login extends Component {
 							}
 
 							<View style={{ flexDirection: 'row', marginVertical: 5 }}>
-								<Text style={{ color: 'white', fontSize: 10, fontWeight: 'bold' }}>
+								<Text style={{ color: 'white', fontSize: 12, fontWeight: 'bold' }}>
 									{
 										this.state.mode === 'register' ?
 											'Aleady have an account? ' :
@@ -194,7 +194,7 @@ class Login extends Component {
 								</Text>
 								<Text
 									onPress={this.toggle}
-									style={{ color: colors.blue, fontSize: 10, fontWeight: 'bold' }}>
+									style={{ color: colors.blue, fontSize: 12, fontWeight: 'bold' }}>
 									{this.state.mode === 'register' ? 'Sign In' : 'Sign up now'}
 								</Text>
 							</View>

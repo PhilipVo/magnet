@@ -94,7 +94,7 @@ class Info extends Component {
 										}} />
 								}
 							</TouchableHighlight>
-							<Text style={[styles.whiteText, { fontSize: 10 }]}>Select a profile picture</Text>
+							<Text style={[styles.whiteText, { fontSize: 12 }]}>Select a profile picture</Text>
 
 							<View style={{ margin: 30 }}>
 								{/* First Name */}

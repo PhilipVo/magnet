@@ -29,7 +29,7 @@ class Profile extends Component {
 						<Text style={{ color: 'white', fontSize: 40 }}>{this.props.first || 'Gal Gadot'}</Text>
 					</View>
 
-					<Text style={{ color: 'white', fontSize: 12, fontWeight: 'bold', marginLeft: 50 }}>
+					<Text style={{ color: 'white', fontSize: 13, fontWeight: 'bold', marginLeft: 50 }}>
 						Amazonian, 12mi
 					</Text>
 
@@ -37,7 +37,7 @@ class Profile extends Component {
 						onPress={() => this.props.homePhotos(this.props.id)}
 						style={styles.viewPhotos}
 						underlayColor='transparent'>
-						<Text style={{ color: 'white', fontSize: 11 }}>View Photos</Text>
+						<Text style={{ color: 'white', fontSize: 12 }}>View Photos</Text>
 					</TouchableHighlight>
 
 					<Text style={{ color: 'white', fontSize: 15, fontWeight: 'bold' }}>Bio:</Text>

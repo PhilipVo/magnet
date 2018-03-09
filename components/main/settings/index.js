@@ -78,9 +78,9 @@ class Settings extends Component {
 							</TouchableHighlight>
 
 							<TouchableHighlight onPress={this.props.mainMyPhotos} style={{ marginBottom: 10 }}>
-								<Text style={{ color: colors.blue, fontSize: 10, fontWeight: 'bold' }}>
+								<Text style={{ color: colors.blue, fontSize: 12, fontWeight: 'bold' }}>
 									Change Profile/Background Picture
-						</Text>
+								</Text>
 							</TouchableHighlight>
 
 							<View style={styles.row}>
@@ -257,6 +257,7 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = dispatch => ({
 	settingsPassword: () => dispatch({ type: 'SETTINGS_PASSWORD' }),
 	settingsPreferences: () => dispatch({ type: 'SETTINGS_PREFERENCES' }),
+	mainMyPhotos: () => dispatch({ type: 'MAIN_MY_PHOTOS' }),
 	mainToggle: () => dispatch({ type: 'MAIN_TOGGLE' }),
 });
 

@@ -86,7 +86,7 @@ const Navigator = DrawerNavigator(
 			labelStyle: { fontSize: 16, margin: 0, marginTop: 25 },
 		},
 		drawerBackgroundColor: colors.blue,
-		initialRouteName: 'Settings'
+		initialRouteName: 'Home'
 	}
 );
 

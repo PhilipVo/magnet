@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-	SegmentedControlIOS,
 	StatusBar,
 	StyleSheet,
 	Text,
@@ -8,6 +7,7 @@ import {
 	View
 } from 'react-native';
 import { connect } from 'react-redux';
+import SegmentedControlTab from 'react-native-segmented-control-tab';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
 import { TabsNavigator } from '../../../navigators/tabs.navigator';
@@ -18,22 +18,22 @@ class Home extends Component {
 	render() {
 		return (
 			<View style={{ flex: 1 }}>
-				<StatusBar barStyle='dark-content' />
-
 				{/* Header */}
 				<View style={styles.header}>
 					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
 						<Icon color={colors.darkGray} name='menu' onPress={this.props.mainToggle} size={40} />
 					</View>
 					<View style={{ flex: 3 }}>
-						<SegmentedControlIOS
-							values={['Qualified', 'Prospects']}
+						<SegmentedControlTab
+							activeTabStyle={{ backgroundColor: colors.blue }}
+							onTabPress={this.props.tabsToggle}
 							selectedIndex={this.props.tab}
-							onValueChange={this.props.tabsToggle}
-							style={{ flex: 1, marginVertical: 10 }} />
+							tabTextStyle={{ color: colors.blue }}
+							tabStyle={{ backgroundColor: 'transparent', borderColor: colors.blue }}
+							values={['Qualified', 'Prospects']} />
 					</View>
 					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
-						<Icon color={colors.darkGray} name='menu' size={40} />
+						<Icon color={colors.darkGray} name='wifi' size={40} />
 					</View>
 				</View>
 
@@ -84,7 +84,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	mainToggle: () => dispatch({ type: 'MAIN_TOGGLE' }),
-	tabsToggle: tab => dispatch({ type: `TABS_${tab.toUpperCase()}` })
+	tabsToggle: tab => dispatch({ type: `TABS_${tab ? 'PROSPECTS' : 'QUALIFIED'}` })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

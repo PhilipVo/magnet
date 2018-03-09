@@ -4,7 +4,7 @@ import {
 	Modal,
 	StyleSheet,
 	Text,
-	TouchableHighlight,
+	TouchableWithoutFeedback,
 	View
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -40,15 +40,14 @@ class Photos extends Component {
 		const images = [];
 		for (let i = 0; i < this.state.data.length; i++) {
 			images.push(
-				<TouchableHighlight
+				<TouchableWithoutFeedback
 					key={i}
 					onPress={() => {
 						this.setState({ showsButtons: !this.state.showsButtons })
 					}}
-					style={{ flex: 1 }}
-					underlayColor='transparent'>
+					style={{ flex: 1 }}>
 					<Image source={{ uri: this.state.data[i] }} style={{ flex: 1 }} />
-				</TouchableHighlight>
+				</TouchableWithoutFeedback>
 			);
 		}
 
@@ -62,19 +61,19 @@ class Photos extends Component {
 				<View key={i} style={{ flex: 1, flexDirection: 'row' }}>
 					{
 						this.state.data[2 * i] &&
-						<TouchableHighlight
+						<TouchableWithoutFeedback
 							onPress={() => this.setState({ selected: 2 * i })}
 							style={{ flex: 1 }}>
 							<Image source={{ uri: this.state.data[2 * i] }} style={{ flex: 1, borderRadius: 5, margin: 5 }} />
-						</TouchableHighlight>
+						</TouchableWithoutFeedback>
 					}
 					{
 						this.state.data[2 * i + 1] &&
-						<TouchableHighlight
+						<TouchableWithoutFeedback
 							onPress={() => this.setState({ selected: 2 * i + 1 })}
 							style={{ flex: 1 }}>
 							<Image source={{ uri: this.state.data[2 * i + 1] }} style={{ flex: 1, borderRadius: 5, margin: 5 }} />
-						</TouchableHighlight>
+						</TouchableWithoutFeedback>
 					}
 				</View>
 			);

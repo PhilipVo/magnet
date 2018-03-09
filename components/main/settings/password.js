@@ -49,7 +49,7 @@ class Password extends Component {
 					<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 						<View style={{ flex: 1 }}>
 
-							<View style={{ flex: 1, justifyContent: 'flex-end' }}>
+							<View style={{ flex: 1 }}>
 								<View style={styles.row}>
 									<View style={styles.label}>
 										<Text style={{ color: colors.darkGray, fontSize: 12, fontWeight: 'bold' }}>

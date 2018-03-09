@@ -43,7 +43,10 @@ class App extends Component {
 					<Image
 						style={styles.background} />
 				}
-				<StatusBar barStyle='light-content' />
+				{
+					this.props.mode !== 'LOGGED_IN' &&
+					<StatusBar barStyle='light-content' />
+				}
 				{Navigator}
 			</View>
 		);

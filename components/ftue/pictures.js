@@ -115,7 +115,7 @@ class Pictures extends Component {
 								"will be able to see your photos.\n\n"
 							}
 						</Text>
-						<Text style={[styles.whiteText, { fontSize: 11 }]}>
+						<Text style={[styles.whiteText, { fontSize: 12 }]}>
 							{'Please note:\nYou may only upload up to 6 photos.'}
 						</Text>
 					</View>
