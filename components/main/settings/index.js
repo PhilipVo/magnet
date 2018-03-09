@@ -17,13 +17,41 @@ import { colors } from '../../../etc/constants';
 class Settings extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
-		this.user = {};
+		this.state = {
+			bio: '',
+			email: '',
+			first: '',
+			last: '',
+			push: false,
+			user: {}
+		};
 	}
 
-	componentDidMount() { }
+	componentDidMount() {
+		this.setState({
+			bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+			email: 'elliot@young.com',
+			first: 'Elliot',
+			last: 'Young',
+			push: false,
+			user: {
+				bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+				email: 'elliot@young.com',
+				first: 'Elliot',
+				last: 'Young',
+				push: false,
+			}
+		});
+	}
 
 	render() {
+		const { user } = this.state;
+		const valid = this.state.bio != this.state.user.bio ||
+			this.state.email != this.state.user.email ||
+			this.state.first != this.state.user.first ||
+			this.state.last != this.state.user.last ||
+			this.state.push != this.state.user.push;
+
 		return (
 			<View style={{ flex: 1 }}>
 				{/* Header */}
@@ -64,10 +92,9 @@ class Settings extends Component {
 								<View style={{ flex: 2, padding: 10 }}>
 									<TextInput
 										autoCorrect={false}
-										onChangeText={first => this.user.first = first}
-										placeholder='Elliot'
-										placeholderTextColor={colors.lightGray}
-										style={{ color: colors.darkGray }} />
+										onChangeText={first => this.setState({ first: first })}
+										style={{ color: colors.darkGray }}
+										value={this.state.first} />
 								</View>
 							</View>
 
@@ -79,11 +106,10 @@ class Settings extends Component {
 								</View>
 								<View style={{ flex: 2, padding: 10 }}>
 									<TextInput
-											autoCorrect={false}
-											onChangeText={last => this.user.last = last}
-											placeholder='Young'
-											placeholderTextColor={colors.lightGray}
-											style={{ color: colors.darkGray }} />
+										autoCorrect={false}
+										onChangeText={last => this.setState({ last: last })}
+										style={{ color: colors.darkGray }}
+										value={this.state.last} />
 								</View>
 							</View>
 
@@ -98,10 +124,9 @@ class Settings extends Component {
 										autoCapitalize='none'
 										autoCorrect={false}
 										keyboardType='email-address'
-										onChangeText={email => this.user.email = email}
-										placeholder='elliot@young.com'
-										placeholderTextColor={colors.lightGray}
-										style={{ color: colors.darkGray }} />
+										onChangeText={email => this.setState({ email: email })}
+										style={{ color: colors.darkGray }}
+										value={this.state.email} />
 								</View>
 							</View>
 
@@ -113,10 +138,11 @@ class Settings extends Component {
 								</View>
 								<View style={{ flex: 2, padding: 10 }}>
 									<TextInput
-										onChangeText={bio => this.user.bio = bio}
+										onChangeText={bio => this.setState({ bio: bio })}
 										multiline={true}
-										value={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-										style={{ color: colors.darkGray }} />
+										value={this.state.user.bio}
+										style={{ color: colors.darkGray }}
+										value={this.state.bio} />
 								</View>
 							</View>
 
@@ -127,10 +153,10 @@ class Settings extends Component {
 									</Text>
 								</View>
 								<TouchableHighlight
-									onPress={() => this.setState({ push: this.state.push ? false : true})}
+									onPress={() => this.setState({ push: this.state.push ? false : true })}
 									style={[
 										styles.toggle,
-										{ backgroundColor: this.state.push ? colors.green : colors.darkGray}
+										{ backgroundColor: this.state.push ? colors.green : colors.darkGray }
 									]}>
 									<Text style={{ color: 'white' }}>
 										{this.state.push ? 'On' : 'Off'}
@@ -138,11 +164,21 @@ class Settings extends Component {
 								</TouchableHighlight>
 							</View>
 
-							<View style={[styles.button, styles.save]}>
-								<Text style={{ color: colors.blue, flex: 1, textAlign: 'center' }}>
-									Save Changes
-								</Text>
-							</View>
+							{
+								valid ?
+									<TouchableHighlight
+										onPress={() => { }}
+										style={[styles.button, styles.save]}>
+										<Text style={[styles.saveText, { color: colors.blue }]}>
+											Save Changes
+										</Text>
+									</TouchableHighlight> :
+									<View style={[styles.button, styles.save, { borderWidth: 0 }]}>
+										<Text style={[styles.saveText, { color: colors.lightGray }]}>
+											Save Changes
+										</Text>
+									</View>
+							}
 
 							<TouchableHighlight
 								onPress={this.props.settingsPassword}
@@ -199,7 +235,13 @@ const styles = StyleSheet.create({
 	save: {
 		backgroundColor: 'white',
 		borderColor: colors.blue,
-		borderWidth: 1
+		borderWidth: 1,
+		flex: 1
+	},
+	saveText: {
+		flex: 1,
+		fontWeight: 'bold',
+		textAlign: 'center'
 	},
 	toggle: {
 		alignItems: 'center',

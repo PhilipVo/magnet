@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {
 	Image,
+	Keyboard,
 	Modal,
 	StyleSheet,
 	Text,
 	TextInput,
 	TouchableHighlight,
+	TouchableWithoutFeedback,
 	View
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -17,13 +19,16 @@ import { colors } from '../../../etc/constants';
 class Password extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
-		this.user = {};
+		this.state = {
+			confirm: '',
+			old: '',
+			password: ''
+		};
 	}
 
-	componentDidMount() { }
-
 	render() {
+		const valid = this.state.confirm && this.state.old && this.state.password &&
+			this.state.confirm == this.state.password;
 		return (
 			<View style={{ flex: 1 }}>
 				{/* Header */}
@@ -40,126 +45,81 @@ class Password extends Component {
 				</View>
 
 				{/* Body */}
-				<View style={{ flex: 11 }}>
-					<KeyboardAwareScrollView>
-						<View style={{ alignItems: 'center', flex: 1, marginBottom: 15 }}>
-							<TouchableHighlight onPress={this.props.mainMyPhotos}>
-								<Image
-									source={{ uri: 'https://media.tmz.com/2017/08/16/081617-chris-brown-primary-1.jpg' }}
-									style={{ borderRadius: 50, height: 100, width: 100 }} />
-							</TouchableHighlight>
+				<View style={{ flex: 11, marginBottom: 15 }}>
+					<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+						<View style={{ flex: 1 }}>
 
-							<TouchableHighlight onPress={this.props.mainMyPhotos} style={{ marginBottom: 10 }}>
-								<Text style={{ color: colors.blue, fontSize: 10, fontWeight: 'bold' }}>
-									Change Profile/Background Picture
-						</Text>
-							</TouchableHighlight>
-
-							<View style={styles.row}>
-								<View style={styles.label}>
-									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
-										First Name
+							<View style={{ flex: 1, justifyContent: 'flex-end' }}>
+								<View style={styles.row}>
+									<View style={styles.label}>
+										<Text style={{ color: colors.darkGray, fontSize: 12, fontWeight: 'bold' }}>
+											Old Password
 									</Text>
-								</View>
-								<View style={{ flex: 2, padding: 10 }}>
-									<TextInput
-										autoCorrect={false}
-										onChangeText={first => this.user.first = first}
-										placeholder='Elliot'
-										placeholderTextColor={colors.lightGray}
-										style={{ color: colors.darkGray }} />
-								</View>
-							</View>
-
-							<View style={styles.row}>
-								<View style={styles.label}>
-									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
-										Last Name
-									</Text>
-								</View>
-								<View style={{ flex: 2, padding: 10 }}>
-									<TextInput
+									</View>
+									<View style={{ flex: 3, padding: 10 }}>
+										<TextInput
+											autoCapitalize='none'
 											autoCorrect={false}
-											onChangeText={last => this.user.last = last}
-											placeholder='Young'
-											placeholderTextColor={colors.lightGray}
+											onChangeText={old => this.setState({ old: old })}
+											secureTextEntry={true}
 											style={{ color: colors.darkGray }} />
+									</View>
 								</View>
-							</View>
 
-							<View style={styles.row}>
-								<View style={styles.label}>
-									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
-										Email
+								<View style={styles.row}>
+									<View style={styles.label}>
+										<Text style={{ color: colors.darkGray, fontSize: 12, fontWeight: 'bold' }}>
+											New Password
 									</Text>
+									</View>
+									<View style={{ flex: 3, padding: 10 }}>
+										<TextInput
+											autoCapitalize='none'
+											autoCorrect={false}
+											onChangeText={password => this.setState({ password: password })}
+											secureTextEntry={true}
+											style={{ color: colors.darkGray }} />
+									</View>
 								</View>
-								<View style={{ flex: 2, padding: 10 }}>
-									<TextInput
-										autoCapitalize='none'
-										autoCorrect={false}
-										keyboardType='email-address'
-										onChangeText={email => this.user.email = email}
-										placeholder='elliot@young.com'
-										placeholderTextColor={colors.lightGray}
-										style={{ color: colors.darkGray }} />
-								</View>
-							</View>
 
-							<View style={styles.row}>
-								<View style={styles.label}>
-									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
-										Bio
+								<View style={styles.row}>
+									<View style={styles.label}>
+										<Text style={{ color: colors.darkGray, fontSize: 12, fontWeight: 'bold' }}>
+											Confirm Password
 									</Text>
+									</View>
+									<View style={{ flex: 3, padding: 10 }}>
+										<TextInput
+											autoCapitalize='none'
+											autoCorrect={false}
+											onChangeText={confirm => this.setState({ confirm: confirm })}
+											secureTextEntry={true}
+											style={{ color: colors.darkGray }} />
+									</View>
 								</View>
-								<View style={{ flex: 2, padding: 10 }}>
-									<TextInput
-										onChangeText={bio => this.user.bio = bio}
-										multiline={true}
-										value={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-										style={{ color: colors.darkGray }} />
-								</View>
 							</View>
 
-							<View style={styles.row}>
-								<View style={[styles.label, { flex: 3 }]}>
-									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
-										Push Notifications
-									</Text>
-								</View>
-								<TouchableHighlight
-									onPress={() => this.setState({ push: this.state.push ? false : true})}
-									style={[
-										styles.toggle,
-										{ backgroundColor: this.state.push ? colors.green : colors.darkGray}
-									]}>
-									<Text style={{ color: 'white' }}>
-										{this.state.push ? 'On' : 'Off'}
-									</Text>
-								</TouchableHighlight>
-							</View>
-
-							<View style={[styles.button, styles.save]}>
-								<Text style={{ color: colors.blue, flex: 1, textAlign: 'center' }}>
-									Save Changes
-								</Text>
-							</View>
-
-							<View style={[styles.button, { backgroundColor: colors.blue }]}>
-								<Text style={{ color: 'white', flex: 1, textAlign: 'center' }}>
-									Change Password
-								</Text>
-							</View>
-
-							<View style={[styles.button, { backgroundColor: colors.blue }]}>
-								<Text style={{ color: 'white', flex: 1, textAlign: 'center' }}>
-									Edit Preferences
-								</Text>
+							<View style={{ flex: 1, justifyContent: 'flex-end' }}>
+								{
+									valid ?
+										<TouchableHighlight
+											onPress={() => { }}
+											style={[styles.button, styles.save]}>
+											<Text style={[styles.saveText, { color: colors.blue }]}>
+												Save New Password
+											</Text>
+										</TouchableHighlight> :
+										<View style={[styles.button, styles.save, { borderWidth: 0 }]}>
+											<Text style={[styles.saveText, { color: colors.lightGray }]}>
+												Save New Password
+										</Text>
+										</View>
+								}
 							</View>
 
 						</View>
-					</KeyboardAwareScrollView>
+					</TouchableWithoutFeedback>
 				</View>
-
 			</View>
 		);
 	}
@@ -175,7 +135,7 @@ const styles = StyleSheet.create({
 	label: {
 		borderRightColor: colors.darkGray,
 		borderRightWidth: 1,
-		flex: 1,
+		flex: 2,
 		padding: 10,
 	},
 	header: {
@@ -196,6 +156,11 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 		borderColor: colors.blue,
 		borderWidth: 1
+	},
+	saveText: {
+		flex: 1,
+		fontWeight: 'bold',
+		textAlign: 'center'
 	},
 	toggle: {
 		alignItems: 'center',

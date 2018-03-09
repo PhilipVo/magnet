@@ -24,17 +24,17 @@ class App extends Component {
 	}
 
 	render() {
-		// let Navigator = null;
-		// if (this.props.mode === 'LOGGED_IN') {
-		const MainNavigator = require('./navigators/main.navigator').MainNavigator;
-		Navigator = <MainNavigator />
-		// } else if (this.props.mode === 'LOGGED_OUT') {
-		// 	const AppNavigator = require('./navigators/app.navigator').AppNavigator;
-		// 	Navigator = <AppNavigator />
-		// } else if (this.props.mode === 'NEW_USER') {
-		// 	const FTUENavigator = require('./navigators/ftue.navigator').FTUENavigator;
-		// 	Navigator = <FTUENavigator />
-		// }
+		let Navigator = null;
+		if (this.props.mode === 'LOGGED_IN') {
+			const MainNavigator = require('./navigators/main.navigator').MainNavigator;
+			Navigator = <MainNavigator />
+		} else if (this.props.mode === 'LOGGED_OUT') {
+			const AppNavigator = require('./navigators/app.navigator').AppNavigator;
+			Navigator = <AppNavigator />
+		} else if (this.props.mode === 'NEW_USER') {
+			const FTUENavigator = require('./navigators/ftue.navigator').FTUENavigator;
+			Navigator = <FTUENavigator />
+		}
 
 		return (
 			<View style={{ flex: 1 }}>

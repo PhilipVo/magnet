@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import {
-	Image,
 	Keyboard,
-	KeyboardAvoidingView,
-	StyleSheet,
 	Text,
 	TextInput,
 	TouchableHighlight,
@@ -11,96 +8,20 @@ import {
 	View
 } from 'react-native';
 import { connect } from 'react-redux';
-import { LoginManager, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
-
-import session from '../services/session.service';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { colors } from '../etc/constants';
 
-class Login extends Component {
+class Forgot extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			disabled: false,
-			error: null,
-			mode: 'login'
-		};
-
-		this.user = {
 			email: '',
+			disabled: false,
+			error: '',
+			sent: false
 		};
-	}
-
-	facebookLogin = () => {
-		if (!this.state.disabled) {
-			this.setState({
-				disbaled: true,
-				error: null,
-			});
-
-			LoginManager.logInWithReadPermissions(['public_profile']).then(result => {
-				if (result.isCancelled) this.setState({ disabled: false });
-				else {
-					const infoRequest = new GraphRequest('/me', null, (error, result) => {
-						if (error) throw error.toString();
-						else return session.facebookLogin({ id: result.id })
-							.then(isNew => {
-								if (isNew === true) this.props.setMode('NEW_USER');
-								else this.props.setMode('LOGGED_IN');
-							}).catch(error => {
-								this.setState({
-									disabled: false,
-									error: typeof error === 'string' ? error : 'Oops, something went wrong.',
-								});
-							});
-					});
-
-					new GraphRequestManager().addRequest(infoRequest).start();
-				}
-			}).catch(error => {
-				this.setState({
-					disabled: false,
-					error: typeof error === 'string' ? error : 'Oops, something went wrong.',
-				});
-			});
-		}
-	}
-
-	login = () => {
-		if (!this.state.disabled) {
-			this.setState({
-				disabled: true,
-				error: null
-			});
-
-			if (this.state.mode === 'login') {
-				session.login(this.user)
-					.then(() => this.props.setMode('LOGGED_IN'))
-					.catch(error => {
-						console.log(error)
-						this.setState({
-							disabled: false,
-							error: typeof error === 'string' ? error : 'Oops, something went wrong.',
-						});
-					});
-			} else {
-				session.register(this.user)
-					.then(() => this.props.setMode('NEW_USER'))
-					.catch(error => {
-						this.setState({
-							disabled: false,
-							error: typeof error === 'string' ? error : 'Oops, something went wrong.',
-						});
-					});
-			}
-		}
-	}
-
-	toggle = () => {
-		this.state.mode === 'login' ?
-			this.setState({ mode: 'register' }) :
-			this.setState({ mode: 'login' });
 	}
 
 	render() {
@@ -108,82 +29,64 @@ class Login extends Component {
 			<TouchableWithoutFeedback
 				onPress={Keyboard.dismiss}>
 				<View style={{ flex: 1 }}>
-					<KeyboardAvoidingView behavior={'padding'} style={{ flex: 1 }}>
+					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'flex-end' }}>
+						<Text style={{ color: 'white', fontSize: 16, marginBottom: 10 }}>
+							It happens sometimes.
+						</Text>
+						<Text style={{ color: 'white', textAlign: 'center' }}>
+							{"Please enter your email\nand we'll send you a new password"}
+						</Text>
+					</View>
 
-						<View style={{ flex: 2, justifyContent: 'flex-end' }}>
-							<Text style={[styles.whiteText, { fontSize: 16, marginBottom: 10 }]}>
-								It happens sometimes.
-							</Text>
-							<Text style={styles.whiteText}>
-								{"Please enter your email\nand we'll send you a new password"}
-							</Text>
+					{/* Form */}
+					<View style={{ alignItems: 'center', flex: 2, margin: 50 }}>
+						{/* Email */}
+						<View style={{ flexDirection: 'row', marginVertical: 5 }}>
+							<View style={{ backgroundColor: 'white', flex: 1, padding: 10 }}>
+								<TextInput
+									autoCapitalize='none'
+									autoCorrect={false}
+									keyboardType='email-address'
+									onChangeText={value => this.setState({ email: value })}
+									placeholder='Email'
+									placeholderTextColor={colors.lightGray}
+									style={{ color: colors.darkGray }} />
+							</View>
 						</View>
 
-						{/* Form */}
-						<View style={{ flex: 3, margin: 50 }}>
-							{/* Email */}
-							<TextInput
-								autoCapitalize='none'
-								autoCorrect={false}
-								keyboardType='email-address'
-								onChangeText={email => this.user.email = email}
-								placeholder='Email'
-								placeholderTextColor='rgb(200,200,200)'
-								style={styles.input} />
+						{/* Submit */}
+						<TouchableHighlight
+							onPress={this.submit}
+							style={{ flexDirection: 'row', marginBottom: 5, marginTop: 20 }}>
+							<LinearGradient
+								colors={[colors.lightGreen, colors.darkGreen]}
+								style={{ flex: 1, flexDirection: 'row', padding: 10 }}>
+								<Text style={{ color: 'white', flex: 1, textAlign: 'center' }}>
+									{this.state.sent ? 'New Password Sent!' : 'Request New Password'}
+								</Text>
+							</LinearGradient>
+						</TouchableHighlight>
 
-							{
-								this.state.error &&
-								<Text style={{ color: 'red', textAlign: 'center' }}>{this.state.error}</Text>
-							}
+						{
+							this.state.error.length > 0 &&
+							<Text style={{ color: 'red' }}>{this.state.error}</Text>
+						}
 
-							{/* Create Account */}
-							<TouchableHighlight
-								onPress={this.submit}
-								style={[styles.button, { backgroundColor: colors.green, marginTop: 15 }]}
-								underlayColor='#31da5b'>
-								<Text style={styles.buttonText}>Submit</Text>
-							</TouchableHighlight>
-						</View>
+						<Text
+							onPress={this.props.appBack}
+							style={{ color: colors.blue, fontSize: 10, fontWeight: 'bold', marginVertical: 5 }}>
+							Go Back to Login Screen
+						</Text>
 
-					</KeyboardAvoidingView>
+					</View>
 				</View>
 			</TouchableWithoutFeedback>
 		);
 	}
 }
 
-const styles = StyleSheet.create({
-	button: {
-		height: 50,
-		justifyContent: 'center',
-		padding: 5,
-	},
-	buttonText: {
-		color: 'white',
-		fontSize: 16,
-		textAlign: 'center'
-	},
-	input: {
-		backgroundColor: 'white',
-		color: 'black',
-		fontSize: 16,
-		height: 50,
-		marginBottom: 10,
-		padding: 10
-	},
-	whiteText: {
-		backgroundColor: 'transparent',
-		color: 'white',
-		textAlign: 'center'
-	},
-});
-
-const mapStateToProps = state => ({
-	mode: state.session
-});
-
 const mapDispatchToProps = dispatch => ({
-	setMode: mode => { dispatch({ type: 'SET_MODE', mode: mode }); }
+	appBack: mode => { dispatch({ type: 'APP_BACK' }); }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Forgot);

@@ -109,16 +109,15 @@ class Login extends Component {
 
 	render() {
 		return (
-			<TouchableWithoutFeedback
-				onPress={Keyboard.dismiss}>
+			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 				<View style={{ flex: 1 }}>
 					<KeyboardAvoidingView behavior={'padding'} style={{ flex: 1 }}>
 
-						<View style={{ flex: 2, justifyContent: 'flex-end' }}>
-							<Text style={[styles.whiteText, { fontSize: 16, marginBottom: 10 }]}>
+						<View style={{ alignItems: 'center', flex: 1, justifyContent: 'flex-end' }}>
+							<Text style={{ color: 'white', fontSize: 16, marginBottom: 10 }}>
 								{this.state.mode === 'register' ? 'Welcome to Magnet' : 'Welcome Back'}
 							</Text>
-							<Text style={styles.whiteText}>
+							<Text style={{ color: 'white', textAlign: 'center' }}>
 								{
 									this.state.mode === 'register' ?
 										'Please provide the following information:' :
@@ -128,63 +127,76 @@ class Login extends Component {
 						</View>
 
 						{/* Form */}
-						<View style={{ flex: 3, margin: 50 }}>
+						<View style={{ alignItems: 'center', flex: 2, margin: 50 }}>
+
 							{/* Email */}
-							<TextInput
-								autoCapitalize='none'
-								autoCorrect={false}
-								keyboardType='email-address'
-								onChangeText={email => this.user.email = email}
-								placeholder='Email'
-								placeholderTextColor='rgb(200,200,200)'
-								style={styles.input} />
+							<View style={{ flexDirection: 'row', marginVertical: 5 }}>
+								<View style={{ backgroundColor: 'white', flex: 1, padding: 10 }}>
+									<TextInput
+										autoCapitalize='none'
+										autoCorrect={false}
+										keyboardType='email-address'
+										onChangeText={value => this.user.email = value}
+										placeholder='Email'
+										placeholderTextColor={colors.lightGray}
+										style={{ color: colors.darkGray }} />
+								</View>
+							</View>
 
 							{/* Password */}
-							<TextInput
-								autoCapitalize='none'
-								autoCorrect={false}
-								onChangeText={password => this.user.password = password}
-								placeholder='Password'
-								placeholderTextColor='rgb(200,200,200)'
-								secureTextEntry={true}
-								style={styles.input} />
+							<View style={{ flexDirection: 'row', marginVertical: 5 }}>
+								<View style={{ backgroundColor: 'white', flex: 1, padding: 10 }}>
+									<TextInput
+										autoCapitalize='none'
+										autoCorrect={false}
+										onChangeText={value => this.user.password = value}
+										placeholder='Password'
+										placeholderTextColor={colors.lightGray}
+										style={{ color: colors.darkGray }}
+										secureTextEntry={true} />
+								</View>
+							</View>
 
-							<Text onPress={this.props.forgot} style={[styles.already, { textAlign: 'right' }]}>
-								Forgot Password?
-							</Text>
+							{
+								this.state.mode === 'login' &&
+								<Text
+									onPress={this.props.forgot}
+									style={{ alignSelf: 'flex-end', color: 'white', fontSize: 10, fontWeight: 'bold' }}>
+									Forgot Password?
+								</Text>
+							}
+
+							{/* Login/Register */}
+							<TouchableHighlight
+								onPress={this.login}
+								style={{ flexDirection: 'row', marginBottom: 5, marginTop: 20 }}>
+								<LinearGradient
+									colors={[colors.lightGreen, colors.darkGreen]}
+									style={{ flex: 1, flexDirection: 'row', padding: 10 }}>
+									<Text style={{ color: 'white', flex: 1, textAlign: 'center' }}>
+										{this.state.mode === 'register' ? 'Create Account' : 'Login'}
+									</Text>
+								</LinearGradient>
+							</TouchableHighlight>
 
 							{
 								this.state.error &&
 								<Text style={{ color: 'red', textAlign: 'center' }}>{this.state.error}</Text>
 							}
 
-							{/* Create Account */}
-							<TouchableHighlight
-								onPress={this.login}
-								style={{ marginTop: 15 }}
-								underlayColor='#31da5b'>
-								<LinearGradient
-									colors={[colors.lightGreen, colors.darkGreen]}
-									style={styles.button}>
-									<Text style={styles.buttonText}>
-										{this.state.mode === 'register' ? 'Create Account' : 'Login'}
-									</Text>
-								</LinearGradient>
-							</TouchableHighlight>
-
-							<View style={{ alignItems: 'center', marginTop: 10 }}>
-								<View style={{ flexDirection: 'row' }}>
-									<Text style={styles.already}>
-										{
-											this.state.mode === 'register' ?
-												'Aleady have an account? ' :
-												'Don\'t have an account? '
-										}
-									</Text>
-									<Text onPress={this.toggle} style={styles.sign}>
-										{this.state.mode === 'register' ? 'Sign In' : 'Register'}
-									</Text>
-								</View>
+							<View style={{ flexDirection: 'row', marginVertical: 5 }}>
+								<Text style={{ color: 'white', fontSize: 10, fontWeight: 'bold' }}>
+									{
+										this.state.mode === 'register' ?
+											'Aleady have an account? ' :
+											'Don\'t have an account? '
+									}
+								</Text>
+								<Text
+									onPress={this.toggle}
+									style={{ color: colors.blue, fontSize: 10, fontWeight: 'bold' }}>
+									{this.state.mode === 'register' ? 'Sign In' : 'Sign up now'}
+								</Text>
 							</View>
 
 							{/* Or */}
@@ -197,12 +209,13 @@ class Login extends Component {
 							{/* Facebook */}
 							<TouchableHighlight
 								onPress={this.facebookLogin}
-								style={[styles.button, { backgroundColor: '#3b5998' }]}
-								underlayColor='#3b5998'>
-								<Text style={styles.buttonText}>Continue with Facebook</Text>
+								style={{ backgroundColor: '#3b5998', flexDirection: 'row', marginVertical: 5, padding: 10 }}>
+								<Text style={{ color: 'white', flex: 1, textAlign: 'center' }}>
+									Continue with Facebook
+								</Text>
 							</TouchableHighlight>
-						</View>
 
+						</View>
 					</KeyboardAvoidingView>
 				</View>
 			</TouchableWithoutFeedback>
@@ -211,30 +224,6 @@ class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-	already: {
-		backgroundColor: 'transparent',
-		color: 'white',
-		fontSize: 10,
-		fontWeight: 'bold'
-	},
-	button: {
-		height: 50,
-		justifyContent: 'center',
-		padding: 5,
-	},
-	buttonText: {
-		color: 'white',
-		fontSize: 16,
-		textAlign: 'center'
-	},
-	input: {
-		backgroundColor: 'white',
-		color: 'black',
-		fontSize: 16,
-		height: 50,
-		marginBottom: 10,
-		padding: 10
-	},
 	or: {
 		backgroundColor: 'transparent',
 		color: 'white',
@@ -250,18 +239,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'center',
 		marginVertical: 15
-	},
-	sign: {
-		backgroundColor: 'transparent',
-		color: colors.blue,
-		fontSize: 10,
-		fontWeight: 'bold'
-	},
-	whiteText: {
-		backgroundColor: 'transparent',
-		color: 'white',
-		textAlign: 'center'
-	},
+	}
 });
 
 const mapStateToProps = (state, props) => ({

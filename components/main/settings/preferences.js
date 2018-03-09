@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Slider from 'react-native-slider';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
 import { colors } from '../../../etc/constants';
@@ -17,13 +18,43 @@ import { colors } from '../../../etc/constants';
 class Preferences extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
-		this.user = {};
+		this.state = {
+			bio: '',
+			distance: 25,
+			email: '',
+			first: '',
+			last: '',
+			match: 50,
+			push: false,
+			user: {}
+		};
 	}
 
-	componentDidMount() { }
+	componentDidMount() {
+		this.setState({
+			bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+			email: 'elliot@young.com',
+			first: 'Elliot',
+			last: 'Young',
+			push: false,
+			user: {
+				bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+				email: 'elliot@young.com',
+				first: 'Elliot',
+				last: 'Young',
+				push: false,
+			}
+		});
+	}
 
 	render() {
+		const { user } = this.state;
+		const valid = this.state.bio != this.state.user.bio ||
+			this.state.email != this.state.user.email ||
+			this.state.first != this.state.user.first ||
+			this.state.last != this.state.user.last ||
+			this.state.push != this.state.user.push;
+
 		return (
 			<View style={{ flex: 1 }}>
 				{/* Header */}
@@ -43,118 +74,204 @@ class Preferences extends Component {
 				<View style={{ flex: 11 }}>
 					<KeyboardAwareScrollView>
 						<View style={{ alignItems: 'center', flex: 1, marginBottom: 15 }}>
-							<TouchableHighlight onPress={this.props.mainMyPhotos}>
-								<Image
-									source={{ uri: 'https://media.tmz.com/2017/08/16/081617-chris-brown-primary-1.jpg' }}
-									style={{ borderRadius: 50, height: 100, width: 100 }} />
+
+							<View style={[styles.row, { borderWidth: 0 }]}>
+								<View style={{ borderColor: colors.darkGray, borderWidth: 1, flex: 1, padding: 10 }}>
+									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
+										Match %
+									</Text>
+								</View>
+								<View style={{ flex: 3, justifyContent: 'center', marginHorizontal: 10 }}>
+									<Slider
+										minimumValue={0}
+										minimumTrackTintColor={colors.blue}
+										maximumValue={100}
+										maximumTrackTintColor={colors.darkGray}
+										onValueChange={value => this.setState({ match: value })}
+										step={1}
+										style={styles.slider}
+										thumbStyle={{ height: 15, width: 15 }}
+										thumbTintColor={colors.blue}
+										trackStyle={{ height: 1 }}
+										value={this.state.match} />
+									<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+										<Text style={{ color: colors.darkGray, fontSize: 10 }}>0%</Text>
+										<Text style={{ color: colors.blue, fontSize: 10, fontWeight: 'bold' }}>
+											{this.state.match + '%'}
+										</Text>
+										<Text style={{ color: colors.darkGray, fontSize: 10 }}>100%</Text>
+									</View>
+								</View>
+							</View>
+
+							<View style={[styles.row, { borderWidth: 0, marginBottom: 20 }]}>
+								<View style={{ borderColor: colors.darkGray, borderWidth: 1, flex: 1, padding: 10 }}>
+									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
+										Distance
+									</Text>
+								</View>
+								<View style={{ flex: 3, justifyContent: 'center', marginHorizontal: 10 }}>
+									<Slider
+										minimumValue={0}
+										minimumTrackTintColor={colors.blue}
+										maximumValue={50}
+										maximumTrackTintColor={colors.darkGray}
+										onValueChange={value => this.setState({ distance: value })}
+										step={1}
+										style={styles.slider}
+										thumbStyle={{ height: 15, width: 15 }}
+										thumbTintColor={colors.blue}
+										trackStyle={{ height: 1 }}
+										value={this.state.distance} />
+									<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+										<Text style={{ color: colors.darkGray, fontSize: 10 }}>0mi</Text>
+										<Text style={{ color: colors.blue, fontSize: 10, fontWeight: 'bold' }}>
+											{this.state.distance + 'mi'}
+										</Text>
+										<Text style={{ color: colors.darkGray, fontSize: 10 }}>50mi</Text>
+									</View>
+								</View>
+							</View>
+
+							{/* Your Details */}
+							<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 10 }}>
+								<Text style={{ color: colors.blue, flex: 1, fontSize: 16, fontWeight: 'bold' }}>
+									Your Details:
+								</Text>
+							</View>
+
+							<View style={styles.row}>
+								<View style={styles.label}>
+									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
+										Your Height
+									</Text>
+								</View>
+								<View style={{ flex: 1, padding: 10 }}>
+									<Text style={{ color: colors.darkGray }}>
+										{this.state.first}
+									</Text>
+								</View>
+							</View>
+
+							<View style={styles.row}>
+								<View style={styles.label}>
+									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
+										Your Gender
+									</Text>
+								</View>
+								<View style={{ flex: 1, padding: 10 }}>
+									<Text style={{ color: colors.darkGray }}>
+										{this.state.first}
+									</Text>
+								</View>
+							</View>
+
+							<View style={styles.row}>
+								<View style={styles.label}>
+									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
+										Your Sexual Preference
+									</Text>
+								</View>
+								<View style={{ flex: 1, padding: 10 }}>
+									<Text style={{ color: colors.darkGray }}>
+										{this.state.first}
+									</Text>
+								</View>
+							</View>
+
+							<View style={styles.row}>
+								<View style={styles.label}>
+									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
+										Your Vices
+									</Text>
+								</View>
+								<View style={{ flex: 1, padding: 10 }}>
+									<Text style={{ color: colors.darkGray }}>
+										{this.state.first}
+									</Text>
+								</View>
+							</View>
+
+							{/* Desired Details */}
+							<View style={{ flexDirection: 'row', marginHorizontal: 20, marginVertical: 10 }}>
+								<Text style={{ color: colors.blue, flex: 1, fontSize: 16, fontWeight: 'bold' }}>
+									Desired Details:
+								</Text>
+							</View>
+
+							<View style={styles.row}>
+								<View style={styles.label}>
+									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
+										Your Height
+									</Text>
+								</View>
+								<View style={{ flex: 1, padding: 10 }}>
+									<Text style={{ color: colors.darkGray }}>
+										{this.state.first}
+									</Text>
+								</View>
+							</View>
+
+							<View style={styles.row}>
+								<View style={styles.label}>
+									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
+										Your Body Type
+									</Text>
+								</View>
+								<View style={{ flex: 1, padding: 10 }}>
+									<Text style={{ color: colors.darkGray }}>
+										{this.state.first}
+									</Text>
+								</View>
+							</View>
+
+							<View style={styles.row}>
+								<View style={styles.label}>
+									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
+										Your Sexual Preference
+									</Text>
+								</View>
+								<View style={{ flex: 1, padding: 10 }}>
+									<Text style={{ color: colors.darkGray }}>
+										{this.state.first}
+									</Text>
+								</View>
+							</View>
+
+							<View style={styles.row}>
+								<View style={styles.label}>
+									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
+										Your Vices
+									</Text>
+								</View>
+								<View style={{ flex: 1, padding: 10 }}>
+									<Text style={{ color: colors.darkGray }}>
+										{this.state.first}
+									</Text>
+								</View>
+							</View>
+
+							{
+								valid ?
+									<TouchableHighlight
+										onPress={() => { }}
+										style={[styles.button, styles.save]}>
+										<Text style={[styles.saveText, { color: colors.blue }]}>
+											Save Preferences
+										</Text>
+									</TouchableHighlight> :
+									<View style={[styles.button, styles.save, { borderWidth: 0 }]}>
+										<Text style={[styles.saveText, { color: colors.lightGray }]}>
+											Save Preferences
+										</Text>
+									</View>
+							}
+
+							<TouchableHighlight
+								onPress={this.props.settingsPassword}
+								style={[styles.button]}>
+								<Text style={styles.del}>Delete account</Text>
 							</TouchableHighlight>
-
-							<TouchableHighlight onPress={this.props.mainMyPhotos} style={{ marginBottom: 10 }}>
-								<Text style={{ color: colors.blue, fontSize: 10, fontWeight: 'bold' }}>
-									Change Profile/Background Picture
-						</Text>
-							</TouchableHighlight>
-
-							<View style={styles.row}>
-								<View style={styles.label}>
-									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
-										First Name
-									</Text>
-								</View>
-								<View style={{ flex: 2, padding: 10 }}>
-									<TextInput
-										autoCorrect={false}
-										onChangeText={first => this.user.first = first}
-										placeholder='Elliot'
-										placeholderTextColor={colors.lightGray}
-										style={{ color: colors.darkGray }} />
-								</View>
-							</View>
-
-							<View style={styles.row}>
-								<View style={styles.label}>
-									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
-										Last Name
-									</Text>
-								</View>
-								<View style={{ flex: 2, padding: 10 }}>
-									<TextInput
-											autoCorrect={false}
-											onChangeText={last => this.user.last = last}
-											placeholder='Young'
-											placeholderTextColor={colors.lightGray}
-											style={{ color: colors.darkGray }} />
-								</View>
-							</View>
-
-							<View style={styles.row}>
-								<View style={styles.label}>
-									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
-										Email
-									</Text>
-								</View>
-								<View style={{ flex: 2, padding: 10 }}>
-									<TextInput
-										autoCapitalize='none'
-										autoCorrect={false}
-										keyboardType='email-address'
-										onChangeText={email => this.user.email = email}
-										placeholder='elliot@young.com'
-										placeholderTextColor={colors.lightGray}
-										style={{ color: colors.darkGray }} />
-								</View>
-							</View>
-
-							<View style={styles.row}>
-								<View style={styles.label}>
-									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
-										Bio
-									</Text>
-								</View>
-								<View style={{ flex: 2, padding: 10 }}>
-									<TextInput
-										onChangeText={bio => this.user.bio = bio}
-										multiline={true}
-										value={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-										style={{ color: colors.darkGray }} />
-								</View>
-							</View>
-
-							<View style={styles.row}>
-								<View style={[styles.label, { flex: 3 }]}>
-									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
-										Push Notifications
-									</Text>
-								</View>
-								<TouchableHighlight
-									onPress={() => this.setState({ push: this.state.push ? false : true})}
-									style={[
-										styles.toggle,
-										{ backgroundColor: this.state.push ? colors.green : colors.darkGray}
-									]}>
-									<Text style={{ color: 'white' }}>
-										{this.state.push ? 'On' : 'Off'}
-									</Text>
-								</TouchableHighlight>
-							</View>
-
-							<View style={[styles.button, styles.save]}>
-								<Text style={{ color: colors.blue, flex: 1, textAlign: 'center' }}>
-									Save Changes
-								</Text>
-							</View>
-
-							<View style={[styles.button, { backgroundColor: colors.blue }]}>
-								<Text style={{ color: 'white', flex: 1, textAlign: 'center' }}>
-									Change Password
-								</Text>
-							</View>
-
-							<View style={[styles.button, { backgroundColor: colors.blue }]}>
-								<Text style={{ color: 'white', flex: 1, textAlign: 'center' }}>
-									Edit Preferences
-								</Text>
-							</View>
 
 						</View>
 					</KeyboardAwareScrollView>
@@ -172,10 +289,17 @@ const styles = StyleSheet.create({
 		marginVertical: 5,
 		padding: 10
 	},
+	del: {
+		color: 'black',
+		flex: 1,
+		fontSize: 12,
+		fontWeight: 'bold',
+		textAlign: 'center'
+	},
 	label: {
 		borderRightColor: colors.darkGray,
 		borderRightWidth: 1,
-		flex: 1,
+		flex: 2,
 		padding: 10,
 	},
 	header: {
@@ -195,7 +319,20 @@ const styles = StyleSheet.create({
 	save: {
 		backgroundColor: 'white',
 		borderColor: colors.blue,
-		borderWidth: 1
+		borderWidth: 1,
+		flex: 1
+	},
+	saveText: {
+		flex: 1,
+		fontWeight: 'bold',
+		textAlign: 'center'
+	},
+	slider: {
+		borderLeftColor: colors.blue,
+		borderLeftWidth: 1,
+		borderRightWidth: 1,
+		borderRightColor: colors.darkGray,
+		height: 15,
 	},
 	toggle: {
 		alignItems: 'center',
