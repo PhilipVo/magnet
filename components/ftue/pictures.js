@@ -5,7 +5,6 @@ import {
 	Text,
 	TextInput,
 	TouchableHighlight,
-	TouchableOpacity,
 	View
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -46,8 +45,8 @@ class Pictures extends Component {
 		return (
 			<View style={{ flex: 1 }}>
 				{/* Header */}
-				<View style={{ flex: 1 }}>
-					<Text style={[styles.whiteText, { fontSize: 50, marginTop: 20 }]}>U</Text>
+				<View style={{ alignItems: 'center', flex: 1 }}>
+					<Text style={{ color: 'white', fontSize: 50, marginTop: 20 }}>U</Text>
 				</View>
 
 				{/* Body */}
@@ -55,45 +54,45 @@ class Pictures extends Component {
 					<TouchableHighlight
 						onPress={this.openPicker}
 						style={{ flex: 2 }}>
-						<View style={{ flex: 1, justifyContent: 'space-around' }}>
+						<View style={{ flex: 1, justifyContent: 'center' }}>
 							{
 								this.state.images.length > 0 &&
-								<View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+								<View style={[styles.row, { alignItems: this.state.images.length > 3 ? 'flex-end' : 'center' }]}>
 									{
 										this.state.images[0] && <Image
 											source={{ uri: this.state.images[0].path }}
-											style={{ backgroundColor: 'white', height: 120, width: 120 }} />
+											style={{ height: 120, width: 120 }} />
 									}
 									{
 										this.state.images[1] && <Image
 											source={{ uri: this.state.images[1].path }}
-											style={{ backgroundColor: 'white', height: 120, width: 120 }} />
+											style={{ height: 120, width: 120 }} />
 									}
 									{
 										this.state.images[2] && <Image
 											source={{ uri: this.state.images[2].path }}
-											style={{ backgroundColor: 'white', height: 120, width: 120 }} />
+											style={{ height: 120, width: 120 }} />
 									}
 								</View>
 							}
 
 							{
 								this.state.images.length > 3 &&
-								<View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+								<View style={[styles.row, { alignItems: 'flex-start', marginTop: 5 }]}>
 									{
 										this.state.images[3] && <Image
 											source={{ uri: this.state.images[3].path }}
-											style={{ backgroundColor: 'white', height: 120, width: 120 }} />
+											style={{ height: 120, width: 120 }} />
 									}
 									{
 										this.state.images[4] && <Image
 											source={{ uri: this.state.images[4].path }}
-											style={{ backgroundColor: 'white', height: 120, width: 120 }} />
+											style={{ height: 120, width: 120 }} />
 									}
 									{
 										this.state.images[5] && <Image
 											source={{ uri: this.state.images[5].path }}
-											style={{ backgroundColor: 'white', height: 120, width: 120 }} />
+											style={{ height: 120, width: 120 }} />
 									}
 								</View>
 							}
@@ -108,14 +107,14 @@ class Pictures extends Component {
 					</TouchableHighlight>
 
 					<View style={{ flex: 1, justifyContent: 'center' }}>
-						<Text style={[styles.whiteText]}>
+						<Text style={{ color: 'white', textAlign: 'center' }}>
 							{
 								"Let's add more pictures\n\n" +
 								"Only people you match with\n" +
 								"will be able to see your photos.\n\n"
 							}
 						</Text>
-						<Text style={[styles.whiteText, { fontSize: 12 }]}>
+						<Text style={{ color: 'white', fontSize: 12, textAlign: 'center' }}>
 							{'Please note:\nYou may only upload up to 6 photos.'}
 						</Text>
 					</View>
@@ -130,7 +129,7 @@ class Pictures extends Component {
 							<LinearGradient
 								colors={[colors.lightGray, colors.darkGray]}
 								style={styles.bottomButton}>
-								<Text style={[styles.whiteText, { fontWeight: 'bold' }]}>Back</Text>
+								<Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>Back</Text>
 							</LinearGradient>
 						</TouchableHighlight>
 						<TouchableHighlight
@@ -139,7 +138,7 @@ class Pictures extends Component {
 							<LinearGradient
 								colors={[colors.lightGreen, colors.darkGreen]}
 								style={styles.bottomButton}>
-								<Text style={[styles.whiteText, { fontWeight: 'bold' }]}>Next</Text>
+								<Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>Next</Text>
 							</LinearGradient>
 						</TouchableHighlight>
 					</View>
@@ -157,10 +156,10 @@ const styles = StyleSheet.create({
 		height: 50,
 		justifyContent: 'center'
 	},
-	whiteText: {
-		backgroundColor: 'transparent',
-		color: 'white',
-		textAlign: 'center'
+	row: {
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'space-evenly'
 	},
 });
 
