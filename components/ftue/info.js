@@ -31,18 +31,30 @@ class Info extends Component {
 			first: '',
 			gender: '',
 			isVisible: false,
+			keyboard: false,
 			last: '',
 			path: '',
 		};
 	}
 
+	componentWillMount() {
+		this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow',
+			() => this.setState({ keyboard: true }));
+		this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide',
+			() => this.setState({ keyboard: false }));
+	}
+
+	componentWillUnmount() {
+		this.keyboardWillShowListener.remove();
+		this.keyboardWillHideListener.remove();
+	}
+
 	openCamera = () => {
 		ImagePicker.openCamera({
+			cropperCircleOverlay: true,
 			cropping: true,
-			height: 100,
 			mediaType: 'photo',
-			useFrontCamera: true,
-			width: 100
+			useFrontCamera: true
 		}).then(image => this.setState({ path: image.path }))
 			.catch(() => { });
 	}
@@ -50,9 +62,7 @@ class Info extends Component {
 	openPicker = () => {
 		ImagePicker.openPicker({
 			cropperCircleOverlay: true,
-			cropping: true,
-			height: 100,
-			width: 100,
+			cropping: true
 		}).then(image => this.setState({ path: image.path }))
 			.catch(() => { });
 	}
@@ -73,17 +83,17 @@ class Info extends Component {
 						</View>
 
 						{/* Body */}
-						<View style={{ flex: 4 }}>
+						<View style={{ alignItems: 'center', flex: 4, margin: 50 }}>
 							<Text style={styles.whiteText}>Please provide the following information:</Text>
 
 							<TouchableHighlight
 								onPress={() => { this.actionSheetPicture.show() }}
-								style={{ alignSelf: 'center', marginTop: 30 }}>
+								style={{ marginTop: 20 }}>
 								{
 									this.state.path ?
 										<Image
 											source={{ uri: this.state.path }}
-											style={{ backgroundColor: 'white', borderRadius: 75, height: 150, width: 150 }} /> :
+											style={{ backgroundColor: 'white', borderRadius: 75, height: 150, resizeMode: 'cover', width: 150 }} /> :
 										<View style={{
 											backgroundColor: 'rgba(255,255,255,0.5)',
 											borderRadius: 75,
@@ -94,66 +104,84 @@ class Info extends Component {
 										}} />
 								}
 							</TouchableHighlight>
-							<Text style={[styles.whiteText, { fontSize: 12 }]}>Select a profile picture</Text>
 
-							<View style={{ margin: 30 }}>
-								{/* First Name */}
-								<TextInput
-									autoCorrect={false}
-									onChangeText={first => this.setState({ first: first })}
-									placeholder='First Name'
-									placeholderTextColor='rgb(200,200,200)'
-									style={styles.input} />
+							<Text style={{ color: 'white', fontSize: 12, marginBottom: 20 }}>
+								Select a profile picture
+							</Text>
 
-								{/* Last Name */}
-								<TextInput
-									autoCorrect={false}
-									onChangeText={last => this.setState({ last: last })}
-									placeholder='Last Name'
-									placeholderTextColor='rgb(200,200,200)'
-									style={styles.input} />
-
-								<View style={{ flexDirection: 'row' }}>
-									{/* Birthday */}
-									<TouchableHighlight onPress={() => this.setState({ isVisible: true })} style={{ flex: 1 }}>
-										<View style={styles.inputView}>
-											<Text style={{ color: this.state.birthday ? 'black' : 'rgb(200,200,200)', fontSize: 16 }}>
-												{this.state.birthday ? moment(this.state.birthday).format('MMM D, YYYY') : 'Birthday'}
-											</Text>
-										</View>
-									</TouchableHighlight>
-
-									<View style={{ width: 10 }} />
-
-									{/* Gender */}
-									<TouchableHighlight onPress={() => this.actionSheetGender.show()} style={{ flex: 1 }}>
-										<View style={styles.inputView}>
-											<Text style={{ color: this.state.gender ? 'black' : 'rgb(200,200,200)', fontSize: 16 }}>
-												{this.state.gender || 'Gender'}
-											</Text>
-										</View>
-									</TouchableHighlight>
+							{/* First Name */}
+							<View style={{ flexDirection: 'row', marginVertical: 5 }}>
+								<View style={{ backgroundColor: 'white', flex: 1, padding: 10 }}>
+									<TextInput
+										autoCorrect={false}
+										onChangeText={value => this.setState({ first: value })}
+										placeholder='First Name'
+										placeholderTextColor={colors.lightGray}
+										style={{ color: colors.darkGray, fontWeight: this.state.first ? 'bold' : 'normal' }} />
 								</View>
-
 							</View>
+
+							{/* Last Name */}
+							<View style={{ flexDirection: 'row', marginVertical: 5 }}>
+								<View style={{ backgroundColor: 'white', flex: 1, padding: 10 }}>
+									<TextInput
+										autoCorrect={false}
+										onChangeText={value => this.setState({ last: value })}
+										placeholder='Last Name'
+										placeholderTextColor={colors.lightGray}
+										style={{ color: colors.darkGray, fontWeight: this.state.last ? 'bold' : 'normal' }} />
+								</View>
+							</View>
+
+							<View style={{ flexDirection: 'row', marginVertical: 5 }}>
+								{/* Birthday */}
+								<TouchableHighlight
+									onPress={() => this.setState({ isVisible: true })}
+									style={{ backgroundColor: 'white', flex: 1, flexDirection: 'row', marginRight: 10, padding: 10 }}>
+									<Text
+										style={{
+											color: this.state.birthday ? colors.darkGray : colors.lightGray,
+											fontWeight: this.state.birthday ? 'bold' : 'normal'
+										}}>
+										{this.state.birthday ? moment(this.state.birthday).format('MMM D, YYYY') : 'Birthday'}
+									</Text>
+								</TouchableHighlight>
+
+								{/* Gender */}
+								<TouchableHighlight
+									onPress={() => this.actionSheetGender.show()}
+									style={{ backgroundColor: 'white', flex: 1, flexDirection: 'row', padding: 10 }}>
+									<Text
+										style={{
+											color: this.state.gender ? colors.darkGray : colors.lightGray,
+											fontWeight: this.state.gender ? 'bold' : 'normal'
+										}}>
+										{this.state.gender || 'Gender'}
+									</Text>
+								</TouchableHighlight>
+							</View>
+
 						</View>
 
 						{/* Footer */}
 						<View style={{ flex: 1, justifyContent: 'flex-end' }}>
-							<View style={{ flexDirection: 'row' }}>
-								<View style={styles.bottomButton} />
-								<TouchableOpacity
-									disabled={!valid}
-									onPress={this.props.ftuePictures}
-									style={{ flex: 1 }}>
-									<LinearGradient
-										colors={valid ? [colors.green, colors.darkGreen] :
-											[colors.lightGray, colors.darkGray]}
-										style={[styles.bottomButton, { backgroundColor: colors.green }]}>
-										<Text style={[styles.whiteText, { fontWeight: 'bold' }]}>Continue</Text>
-									</LinearGradient>
-								</TouchableOpacity>
-							</View>
+							{
+								!this.state.keyboard &&
+								<View style={{ flexDirection: 'row' }}>
+									<View style={styles.bottomButton} />
+									<TouchableOpacity
+										disabled={!valid}
+										onPress={this.props.ftuePictures}
+										style={{ flex: 1 }}>
+										<LinearGradient
+											colors={valid ? [colors.green, colors.darkGreen] :
+												[colors.lightGray, colors.darkGray]}
+											style={[styles.bottomButton, { backgroundColor: colors.green }]}>
+											<Text style={[styles.whiteText, { fontWeight: 'bold' }]}>Continue</Text>
+										</LinearGradient>
+									</TouchableOpacity>
+								</View>
+							}
 						</View>
 
 						{/* Birthday picker */}

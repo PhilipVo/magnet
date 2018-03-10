@@ -15,7 +15,7 @@ const Navigator = StackNavigator(
 	{
 		cardStyle: { backgroundColor: 'transparent' },
 		headerMode: 'none',
-		initialRouteName: 'Pictures'
+		initialRouteName: 'Info'
 	}
 );
 
