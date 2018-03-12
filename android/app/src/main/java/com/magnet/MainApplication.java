@@ -3,6 +3,19 @@ package com.magnet;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
+import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
+import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
+import com.transistorsoft.rnbackgroundgeolocation.RNBackgroundGeolocation;
+import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.transistorsoft.rnbackgroundgeolocation.RNBackgroundGeolocation;
+import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
+import com.transistorsoft.rnbackgroundgeolocation.RNBackgroundGeolocation;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -27,6 +40,19 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNBackgroundFetchPackage(),
+            new RNBackgroundFetchPackage(),
+            new RNBackgroundFetchPackage(),
+            new RNBackgroundGeolocation(),
+            new RNBackgroundFetchPackage(),
+            new VectorIconsPackage(),
+            new ReactNativePushNotificationPackage(),
+            new LinearGradientPackage(),
+            new PickerPackage(),
+            new FBSDKPackage(),
+            new RNBackgroundGeolocation(),
+            new RNBackgroundFetchPackage(),
+            new RNBackgroundGeolocation(),
             new PickerPackage(),
             new FBSDKPackage(),
             new VectorIconsPackage(),

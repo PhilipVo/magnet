@@ -23,6 +23,10 @@ class App extends Component {
 			}).catch(() => { });
 	}
 
+	componentWillReceiveProps(nextProps) {
+		console.log('nextProps', nextProps.mode);
+	}
+
 	render() {
 		// let Navigator = null;
 		// if (this.props.mode === 'LOGGED_IN') {

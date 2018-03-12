@@ -137,6 +137,19 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-background-fetch')
+    compile project(':react-native-background-fetch')
+    compile project(':react-native-background-fetch')
+    compile project(':react-native-background-geolocation')
+    compile project(':react-native-background-fetch')
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-push-notification')
+    compile project(':react-native-linear-gradient')
+    compile project(':react-native-image-crop-picker')
+    compile project(':react-native-fbsdk')
+    compile project(':react-native-background-geolocation')
+    compile project(':react-native-background-fetch')
+    compile project(':react-native-background-geolocation')
     compile project(':react-native-image-crop-picker')
     compile project(':react-native-fbsdk')
     compile project(':react-native-vector-icons')
