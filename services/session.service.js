@@ -8,6 +8,8 @@ import notification from './notification.service';
 class SessionService {
 	constructor() {
 		this.isFacebookUser = false;
+		this.id;
+		this.distance = 40234;
 	}
 
 	facebookLogin(data) {

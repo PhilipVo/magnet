@@ -8,8 +8,8 @@ import {
 	View
 } from 'react-native';
 import { connect } from 'react-redux';
-import BackgroundGeolocation from 'react-native-background-geolocation';
 
+import geolocation from './services/geolocation.service';
 import session from './services/session.service';
 
 class App extends Component {

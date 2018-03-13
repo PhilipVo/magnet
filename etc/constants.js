@@ -9,5 +9,7 @@ const colors = {
 };
 
 module.exports = {
-	colors: colors
+	colors: colors,
+	milesToMeters: miles => Math.round(miles * 1609.34),
+	feetToMeters: feet => Math.round(feet * 0.3048)
 };
