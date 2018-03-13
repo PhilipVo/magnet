@@ -37,7 +37,7 @@ class Info extends Component {
 		};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow',
 			() => this.setState({ keyboard: true }));
 		this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide',

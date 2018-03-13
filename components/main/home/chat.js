@@ -41,7 +41,7 @@ class Chat extends Component {
 		};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.setState({
 			messages: [
 				{

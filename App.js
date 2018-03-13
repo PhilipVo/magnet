@@ -8,6 +8,7 @@ import {
 	View
 } from 'react-native';
 import { connect } from 'react-redux';
+import BackgroundGeolocation from 'react-native-background-geolocation';
 
 import session from './services/session.service';
 
@@ -23,9 +24,9 @@ class App extends Component {
 			}).catch(() => { });
 	}
 
-	componentWillReceiveProps(nextProps) {
-		console.log('nextProps', nextProps.mode);
-	}
+	// static getDerivedStateFromProps(nextProps, prevState) {
+	// 	console.log('nextProps', nextProps.mode);
+	// }
 
 	render() {
 		// let Navigator = null;
