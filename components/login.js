@@ -24,12 +24,9 @@ class Login extends Component {
 
 		this.state = {
 			disabled: false,
-			error: null,
-			mode: this.props.mode
-		};
-
-		this.user = {
 			email: '',
+			error: null,
+			mode: this.props.mode,
 			password: ''
 		};
 	}
@@ -136,10 +133,10 @@ class Login extends Component {
 										autoCapitalize='none'
 										autoCorrect={false}
 										keyboardType='email-address'
-										onChangeText={value => this.user.email = value}
+										onChangeText={value => this.setState({ email: value })}
 										placeholder='Email'
 										placeholderTextColor={colors.lightGray}
-										style={{ color: colors.darkGray }} />
+										style={{ color: colors.darkGray, fontWeight: 'bold' }} />
 								</View>
 							</View>
 
@@ -149,10 +146,10 @@ class Login extends Component {
 									<TextInput
 										autoCapitalize='none'
 										autoCorrect={false}
-										onChangeText={value => this.user.password = value}
+										onChangeText={value => this.setState({ password: value })}
 										placeholder='Password'
 										placeholderTextColor={colors.lightGray}
-										style={{ color: colors.darkGray }}
+										style={{ color: colors.darkGray, fontWeight: 'bold' }}
 										secureTextEntry={true} />
 								</View>
 							</View>
@@ -161,7 +158,7 @@ class Login extends Component {
 								this.state.mode === 'login' &&
 								<Text
 									onPress={this.props.forgot}
-									style={{ alignSelf: 'flex-end', color: 'white', fontSize: 12, fontWeight: 'bold' }}>
+									style={styles.forgot}>
 									Forgot Password?
 								</Text>
 							}
@@ -173,7 +170,7 @@ class Login extends Component {
 								<LinearGradient
 									colors={[colors.lightGreen, colors.darkGreen]}
 									style={{ flex: 1, flexDirection: 'row', padding: 10 }}>
-									<Text style={{ color: 'white', flex: 1, textAlign: 'center' }}>
+									<Text style={{ color: 'white', flex: 1, fontWeight: 'bold', textAlign: 'center' }}>
 										{this.state.mode === 'register' ? 'Create Account' : 'Login'}
 									</Text>
 								</LinearGradient>
@@ -184,8 +181,10 @@ class Login extends Component {
 								<Text style={{ color: 'red', textAlign: 'center' }}>{this.state.error}</Text>
 							}
 
-							<View style={{ flexDirection: 'row', marginVertical: 5 }}>
-								<Text style={{ color: 'white', fontSize: 12, fontWeight: 'bold' }}>
+							<View style={{ flexDirection: 'row' }}>
+								<Text
+									onPress={this.toggle}
+									style={{ color: 'white', fontSize: 12, fontWeight: 'bold', paddingVertical: 5 }}>
 									{
 										this.state.mode === 'register' ?
 											'Aleady have an account? ' :
@@ -194,7 +193,7 @@ class Login extends Component {
 								</Text>
 								<Text
 									onPress={this.toggle}
-									style={{ color: colors.blue, fontSize: 12, fontWeight: 'bold' }}>
+									style={{ color: colors.blue, fontSize: 12, fontWeight: 'bold', paddingVertical: 5 }}>
 									{this.state.mode === 'register' ? 'Sign In' : 'Sign up now'}
 								</Text>
 							</View>
@@ -210,7 +209,7 @@ class Login extends Component {
 							<TouchableHighlight
 								onPress={this.facebookLogin}
 								style={{ backgroundColor: '#3b5998', flexDirection: 'row', marginVertical: 5, padding: 10 }}>
-								<Text style={{ color: 'white', flex: 1, textAlign: 'center' }}>
+								<Text style={{ color: 'white', flex: 1, fontWeight: 'bold', textAlign: 'center' }}>
 									Continue with Facebook
 								</Text>
 							</TouchableHighlight>
@@ -224,6 +223,13 @@ class Login extends Component {
 }
 
 const styles = StyleSheet.create({
+	forgot: {
+		alignSelf: 'flex-end',
+		color: 'white',
+		fontSize: 12,
+		fontWeight: 'bold',
+		padding: 10
+	},
 	or: {
 		backgroundColor: 'transparent',
 		color: 'white',

@@ -21,6 +21,7 @@ class Password extends Component {
 		super(props);
 		this.state = {
 			confirm: '',
+			error: 'null',
 			old: '',
 			password: ''
 		};
@@ -33,90 +34,82 @@ class Password extends Component {
 			<View style={{ flex: 1 }}>
 				{/* Header */}
 				<View style={styles.header}>
-					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
-						<Icon color={colors.darkGray} name='chevron-left' onPress={this.props.settingsBack} size={40} />
+					<View style={{ flex: 1 }}>
+						<Text
+							onPress={this.props.settingsBack}
+							style={{ color: colors.darkGray, fontWeight: 'bold', textAlign: 'center' }}>
+							Cancel
+							</Text>
 					</View>
 					<View style={{ flex: 3 }}>
 						<Text style={{ color: colors.darkGray, fontWeight: 'bold', textAlign: 'center' }}>
 							Change Password
 						</Text>
 					</View>
-					<View style={{ flex: 1 }} />
+					<View style={{ flex: 1 }}>
+						<Text
+							onPress={() => { }}
+							style={{
+								color: valid ? colors.darkGray : colors.lightGray,
+								fontWeight: valid ? 'bold' : 'normal',
+								textAlign: 'center'
+							}}>
+							Save
+						</Text>
+					</View>
 				</View>
 
 				{/* Body */}
 				<View style={{ flex: 11, marginBottom: 15 }}>
 					<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 						<View style={{ flex: 1 }}>
-
-							<View style={{ flex: 1 }}>
-								<View style={styles.row}>
-									<View style={styles.label}>
-										<Text style={{ color: colors.darkGray, fontSize: 12, fontWeight: 'bold' }}>
-											Old Password
+							<View style={styles.row}>
+								<View style={styles.label}>
+									<Text style={{ color: colors.darkGray, fontSize: 12, fontWeight: 'bold' }}>
+										Old Password
 									</Text>
-									</View>
-									<View style={{ flex: 3, padding: 10 }}>
-										<TextInput
-											autoCapitalize='none'
-											autoCorrect={false}
-											onChangeText={old => this.setState({ old: old })}
-											secureTextEntry={true}
-											style={{ color: colors.darkGray }} />
-									</View>
 								</View>
-
-								<View style={styles.row}>
-									<View style={styles.label}>
-										<Text style={{ color: colors.darkGray, fontSize: 12, fontWeight: 'bold' }}>
-											New Password
-									</Text>
-									</View>
-									<View style={{ flex: 3, padding: 10 }}>
-										<TextInput
-											autoCapitalize='none'
-											autoCorrect={false}
-											onChangeText={password => this.setState({ password: password })}
-											secureTextEntry={true}
-											style={{ color: colors.darkGray }} />
-									</View>
-								</View>
-
-								<View style={styles.row}>
-									<View style={styles.label}>
-										<Text style={{ color: colors.darkGray, fontSize: 12, fontWeight: 'bold' }}>
-											Confirm Password
-									</Text>
-									</View>
-									<View style={{ flex: 3, padding: 10 }}>
-										<TextInput
-											autoCapitalize='none'
-											autoCorrect={false}
-											onChangeText={confirm => this.setState({ confirm: confirm })}
-											secureTextEntry={true}
-											style={{ color: colors.darkGray }} />
-									</View>
+								<View style={{ flex: 3, padding: 10 }}>
+									<TextInput
+										autoCapitalize='none'
+										autoCorrect={false}
+										onChangeText={old => this.setState({ old: old })}
+										secureTextEntry={true}
+										style={{ color: colors.darkGray }} />
 								</View>
 							</View>
 
-							<View style={{ flex: 1, justifyContent: 'flex-end' }}>
-								{
-									valid ?
-										<TouchableHighlight
-											onPress={() => { }}
-											style={[styles.button, styles.save]}>
-											<Text style={[styles.saveText, { color: colors.blue }]}>
-												Save New Password
-											</Text>
-										</TouchableHighlight> :
-										<View style={[styles.button, styles.save, { borderWidth: 0 }]}>
-											<Text style={[styles.saveText, { color: colors.lightGray }]}>
-												Save New Password
-										</Text>
-										</View>
-								}
+							<View style={styles.row}>
+								<View style={styles.label}>
+									<Text style={{ color: colors.darkGray, fontSize: 12, fontWeight: 'bold' }}>
+										New Password
+									</Text>
+								</View>
+								<View style={{ flex: 3, padding: 10 }}>
+									<TextInput
+										autoCapitalize='none'
+										autoCorrect={false}
+										onChangeText={password => this.setState({ password: password })}
+										secureTextEntry={true}
+										style={{ color: colors.darkGray }} />
+								</View>
 							</View>
 
+							<View style={styles.row}>
+								<View style={styles.label}>
+									<Text style={{ color: colors.darkGray, fontSize: 12, fontWeight: 'bold' }}>
+										Confirm Password
+									</Text>
+								</View>
+								<View style={{ flex: 3, padding: 10 }}>
+									<TextInput
+										autoCapitalize='none'
+										autoCorrect={false}
+										onChangeText={confirm => this.setState({ confirm: confirm })}
+										secureTextEntry={true}
+										style={{ color: colors.darkGray }} />
+								</View>
+							</View>
 						</View>
 					</TouchableWithoutFeedback>
 				</View>
@@ -151,22 +144,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		marginHorizontal: 20,
 		marginVertical: 5
-	},
-	save: {
-		backgroundColor: 'white',
-		borderColor: colors.blue,
-		borderWidth: 1
-	},
-	saveText: {
-		flex: 1,
-		fontWeight: 'bold',
-		textAlign: 'center'
-	},
-	toggle: {
-		alignItems: 'center',
-		backgroundColor: colors.green,
-		flex: 1,
-		padding: 10
 	}
 });
 

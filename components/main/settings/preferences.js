@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
+	Alert,
 	Image,
-	Modal,
 	StyleSheet,
 	Text,
 	TextInput,
@@ -47,6 +47,18 @@ class Preferences extends Component {
 		});
 	}
 
+	alertDelete = () => {
+		Alert.alert(
+			'Are you sure you want to delete your account?',
+			'Doing so will permanently delete all of your information, including your messages, photos, and contacts.',
+			[
+				{ text: 'Cancel', onPress: () => { }, style: 'cancel' },
+				{ text: 'Yes, delete my account', onPress: () => { }, style: 'destructive' }
+			],
+			{ cancelable: false }
+		)
+	}
+
 	render() {
 		const { user } = this.state;
 		const valid = this.state.bio != this.state.user.bio ||
@@ -59,15 +71,29 @@ class Preferences extends Component {
 			<View style={{ flex: 1 }}>
 				{/* Header */}
 				<View style={styles.header}>
-					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
-						<Icon color={colors.darkGray} name='chevron-left' onPress={this.props.settingsBack} size={40} />
+					<View style={{ flex: 1 }}>
+						<Text
+							onPress={this.props.settingsBack}
+							style={{ color: colors.darkGray, fontWeight: 'bold', textAlign: 'center' }}>
+							Cancel
+							</Text>
 					</View>
 					<View style={{ flex: 3 }}>
 						<Text style={{ color: colors.darkGray, fontWeight: 'bold', textAlign: 'center' }}>
 							Preferences
 						</Text>
 					</View>
-					<View style={{ flex: 1 }} />
+					<View style={{ flex: 1 }}>
+						<Text
+							onPress={() => { }}
+							style={{
+								color: valid ? colors.darkGray : colors.lightGray,
+								fontWeight: valid ? 'bold' : 'normal',
+								textAlign: 'center'
+							}}>
+							Save
+						</Text>
+					</View>
 				</View>
 
 				{/* Body */}
@@ -251,51 +277,21 @@ class Preferences extends Component {
 								</View>
 							</View>
 
-							{
-								valid ?
-									<TouchableHighlight
-										onPress={() => { }}
-										style={[styles.button, styles.save]}>
-										<Text style={[styles.saveText, { color: colors.blue }]}>
-											Save Preferences
-										</Text>
-									</TouchableHighlight> :
-									<View style={[styles.button, styles.save, { borderWidth: 0 }]}>
-										<Text style={[styles.saveText, { color: colors.lightGray }]}>
-											Save Preferences
-										</Text>
-									</View>
-							}
-
-							<TouchableHighlight
-								onPress={this.props.settingsPassword}
-								style={[styles.button]}>
-								<Text style={styles.del}>Delete account</Text>
-							</TouchableHighlight>
+							<Text
+								onPress={this.alertDelete}
+								style={{ color: 'black', fontSize: 12, fontWeight: 'bold', marginTop: 10 }}>
+								Delete account
+							</Text>
 
 						</View>
 					</KeyboardAwareScrollView>
 				</View>
-
 			</View>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
-	button: {
-		flexDirection: 'row',
-		marginHorizontal: 20,
-		marginVertical: 5,
-		padding: 10
-	},
-	del: {
-		color: 'black',
-		flex: 1,
-		fontSize: 12,
-		fontWeight: 'bold',
-		textAlign: 'center'
-	},
 	label: {
 		borderRightColor: colors.darkGray,
 		borderRightWidth: 1,
@@ -316,29 +312,12 @@ const styles = StyleSheet.create({
 		marginHorizontal: 20,
 		marginVertical: 5
 	},
-	save: {
-		backgroundColor: 'white',
-		borderColor: colors.blue,
-		borderWidth: 1,
-		flex: 1
-	},
-	saveText: {
-		flex: 1,
-		fontWeight: 'bold',
-		textAlign: 'center'
-	},
 	slider: {
 		borderLeftColor: colors.blue,
 		borderLeftWidth: 1,
 		borderRightWidth: 1,
 		borderRightColor: colors.darkGray,
 		height: 15,
-	},
-	toggle: {
-		alignItems: 'center',
-		backgroundColor: colors.green,
-		flex: 1,
-		padding: 10
 	}
 });
 

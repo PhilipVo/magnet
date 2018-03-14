@@ -6,6 +6,8 @@ import { createStore } from 'redux';
 import App from './App';
 import reducer from './reducers';
 
+console.ignoredYellowBox = ["Warning: componentWill"];
+
 const store = createStore(reducer);
 
 export default class Magnet extends Component {

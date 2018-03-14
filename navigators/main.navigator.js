@@ -31,7 +31,8 @@ const Navigator = DrawerNavigator(
 				<View style={{ flex: 2, marginLeft: 20 }} >
 					<TouchableHighlight
 						onPress={() => props.navigation.navigate('Home')}
-						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}>
+						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}
+						underlayColor='transparent'>
 						<Text
 							style={{ color: 'white', fontWeight: 'bold', fontSize: 16, marginTop: 16 }}>
 							Home
@@ -39,14 +40,16 @@ const Navigator = DrawerNavigator(
 					</TouchableHighlight>
 					<TouchableHighlight
 						onPress={() => { }}
-						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}>
+						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}
+						underlayColor='transparent'>
 						<Text
 							style={{ color: 'white', fontWeight: 'bold', fontSize: 16, marginTop: 16 }}>
 							Invite Friends
 						</Text>
 					</TouchableHighlight><TouchableHighlight
 						onPress={() => props.navigation.navigate('My Photos')}
-						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}>
+						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}
+						underlayColor='transparent'>
 						<Text
 							style={{ color: 'white', fontWeight: 'bold', fontSize: 16, marginTop: 16 }}>
 							My Photos
@@ -54,7 +57,8 @@ const Navigator = DrawerNavigator(
 					</TouchableHighlight>
 					<TouchableHighlight
 						onPress={() => props.navigation.navigate('Settings')}
-						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}>
+						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}
+						underlayColor='transparent'>
 						<Text
 							style={{ color: 'white', fontWeight: 'bold', fontSize: 16, marginTop: 16 }}>
 							Settings
@@ -62,7 +66,8 @@ const Navigator = DrawerNavigator(
 					</TouchableHighlight>
 					<TouchableHighlight
 						onPress={() => { }}
-						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}>
+						style={{ borderBottomColor: 'white', borderBottomWidth: 1 }}
+						underlayColor='transparent'>
 						<Text
 							style={{ color: 'white', fontWeight: 'bold', fontSize: 16, marginTop: 16 }}>
 							Logout

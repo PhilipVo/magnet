@@ -62,12 +62,14 @@ class Info extends Component {
 	openPicker = () => {
 		ImagePicker.openPicker({
 			cropperCircleOverlay: true,
-			cropping: true
+			cropping: true,
+			mediaType: 'photo'
 		}).then(image => this.setState({ path: image.path }))
 			.catch(() => { });
 	}
 
 	render() {
+		console.log('this.stat', this.state.last.length)
 		const valid = this.state.birthday && this.state.first && this.state.last &&
 			this.state.gender && this.state.path ? true : false;
 
@@ -117,7 +119,7 @@ class Info extends Component {
 										onChangeText={value => this.setState({ first: value })}
 										placeholder='First Name'
 										placeholderTextColor={colors.lightGray}
-										style={{ color: colors.darkGray, fontWeight: this.state.first ? 'bold' : 'normal' }} />
+										style={{ color: colors.darkGray, fontWeight: 'bold' }} />
 								</View>
 							</View>
 
@@ -128,8 +130,8 @@ class Info extends Component {
 										autoCorrect={false}
 										onChangeText={value => this.setState({ last: value })}
 										placeholder='Last Name'
-										placeholderTextColor={colors.lightGray}
-										style={{ color: colors.darkGray, fontWeight: this.state.last ? 'bold' : 'normal' }} />
+										placeholderTextColor={colors.darkGray}
+										style={{ color: colors.darkGray, fontWeight: 'bold' }} />
 								</View>
 							</View>
 
@@ -141,7 +143,7 @@ class Info extends Component {
 									<Text
 										style={{
 											color: this.state.birthday ? colors.darkGray : colors.lightGray,
-											fontWeight: this.state.birthday ? 'bold' : 'normal'
+											fontWeight: 'bold'
 										}}>
 										{this.state.birthday ? moment(this.state.birthday).format('MMM D, YYYY') : 'Birthday'}
 									</Text>
@@ -154,7 +156,7 @@ class Info extends Component {
 									<Text
 										style={{
 											color: this.state.gender ? colors.darkGray : colors.lightGray,
-											fontWeight: this.state.gender ? 'bold' : 'normal'
+											fontWeight: 'bold'
 										}}>
 										{this.state.gender || 'Gender'}
 									</Text>
@@ -190,14 +192,12 @@ class Info extends Component {
 							onConfirm={birthday => this.setState({ birthday: birthday, isVisible: false })}
 							isVisible={this.state.isVisible}
 							maximumDate={new Date(new Date().setFullYear(new Date().getFullYear() - 21))}
-							titleIOS='What is your date of birth?' />
+							titleIOS={'What is your date of birth?\nNote: you must be 21 or older to use this app.'} />
 
 						{/* ActionSheet for gender */}
 						<ActionSheet
-							ref={ref => this.actionSheetGender = ref}
-							title={'What is your gender?'}
-							options={['Cancel', 'Male', 'Female']}
 							cancelButtonIndex={0}
+							options={['Cancel', 'Male', 'Female']}
 							onPress={index => {
 								switch (index) {
 									case 1:
@@ -208,7 +208,9 @@ class Info extends Component {
 										break;
 									default:
 								}
-							}} />
+							}}
+							ref={ref => this.actionSheetGender = ref}
+							title={'What is your gender?'} />
 
 						{/* ActionSheet for picture */}
 						<ActionSheet

@@ -50,7 +50,7 @@ class Forgot extends Component {
 									onChangeText={value => this.setState({ email: value })}
 									placeholder='Email'
 									placeholderTextColor={colors.lightGray}
-									style={{ color: colors.darkGray }} />
+									style={{ color: colors.darkGray, fontWeight: 'bold' }} />
 							</View>
 						</View>
 
@@ -61,7 +61,7 @@ class Forgot extends Component {
 							<LinearGradient
 								colors={[colors.lightGreen, colors.darkGreen]}
 								style={{ flex: 1, flexDirection: 'row', padding: 10 }}>
-								<Text style={{ color: 'white', flex: 1, textAlign: 'center' }}>
+								<Text style={{ color: 'white', flex: 1, fontWeight: 'bold', textAlign: 'center' }}>
 									{this.state.sent ? 'New Password Sent!' : 'Request New Password'}
 								</Text>
 							</LinearGradient>
@@ -74,7 +74,7 @@ class Forgot extends Component {
 
 						<Text
 							onPress={this.props.appBack}
-							style={{ color: colors.blue, fontSize: 12, fontWeight: 'bold', marginVertical: 5 }}>
+							style={{ color: colors.blue, fontSize: 12, fontWeight: 'bold', padding: 5 }}>
 							Go Back to Login Screen
 						</Text>
 

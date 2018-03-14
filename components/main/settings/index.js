@@ -9,6 +9,8 @@ import {
 	View
 } from 'react-native';
 import { connect } from 'react-redux';
+import ActionSheet from 'react-native-custom-actionsheet';
+import ImagePicker from 'react-native-image-crop-picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
@@ -21,7 +23,10 @@ class Settings extends Component {
 			bio: '',
 			email: '',
 			first: '',
+			isProfile: false,
 			last: '',
+			location: false,
+			profile: 'https://media.tmz.com/2017/08/16/081617-chris-brown-primary-1.jpg',
 			push: false,
 			user: {}
 		};
@@ -33,24 +38,59 @@ class Settings extends Component {
 			email: 'elliot@young.com',
 			first: 'Elliot',
 			last: 'Young',
+			location: false,
 			push: false,
 			user: {
 				bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 				email: 'elliot@young.com',
 				first: 'Elliot',
 				last: 'Young',
+				location: false,
 				push: false,
+			}
+		});
+	}
+
+	openCamera = () => {
+		ImagePicker.openCamera({
+			cropperCircleOverlay: this.state.isProfile,
+			cropping: this.state.isProfile,
+			mediaType: 'photo',
+			useFrontCamera: this.state.isProfile
+		}).then(image => this.setState({ profile: image.path }))
+			.catch(() => { });
+	}
+
+	openPicker = () => {
+		ImagePicker.openPicker({
+			cropperCircleOverlay: this.state.isProfile,
+			cropping: this.state.isProfile,
+			mediaType: 'photo'
+		}).then(image => this.setState({ profile: image.path }))
+			.catch(() => { });
+	}
+
+	save = () => {
+		this.setState({
+			user: {
+				bio: this.state.bio,
+				email: this.state.email,
+				first: this.state.first,
+				last: this.state.last,
+				location: this.state.location,
+				push: this.state.push
 			}
 		});
 	}
 
 	render() {
 		const { user } = this.state;
-		const valid = this.state.bio != this.state.user.bio ||
-			this.state.email != this.state.user.email ||
-			this.state.first != this.state.user.first ||
-			this.state.last != this.state.user.last ||
-			this.state.push != this.state.user.push;
+		const valid = this.state.bio != user.bio ||
+			this.state.email != user.email ||
+			this.state.first != user.first ||
+			this.state.last != user.last ||
+			this.state.location != user.location ||
+			this.state.push != user.push;
 
 		return (
 			<View style={{ flex: 1 }}>
@@ -64,24 +104,53 @@ class Settings extends Component {
 							Settings
 						</Text>
 					</View>
-					<View style={{ flex: 1 }} />
+					<View style={{ flex: 1 }}>
+						<Text
+							onPress={this.save}
+							style={{
+								color: valid ? colors.darkGray : colors.lightGray,
+								fontWeight: valid ? 'bold' : 'normal',
+								textAlign: 'center'
+							}}>
+							Save
+						</Text>
+					</View>
 				</View>
 
 				{/* Body */}
 				<View style={{ flex: 11 }}>
 					<KeyboardAwareScrollView>
 						<View style={{ alignItems: 'center', flex: 1, marginBottom: 15 }}>
-							<TouchableHighlight onPress={this.props.mainMyPhotos}>
+							<TouchableHighlight
+								onPress={() => {
+									this.setState(() => {
+										return { isProfile: true }
+									}, () => this.actionSheet.show());
+								}}>
 								<Image
-									source={{ uri: 'https://media.tmz.com/2017/08/16/081617-chris-brown-primary-1.jpg' }}
+									source={{ uri: this.state.profile }}
 									style={{ borderRadius: 50, height: 100, width: 100 }} />
 							</TouchableHighlight>
 
-							<TouchableHighlight onPress={this.props.mainMyPhotos} style={{ marginBottom: 10 }}>
-								<Text style={{ color: colors.blue, fontSize: 12, fontWeight: 'bold' }}>
-									Change Profile/Background Picture
-								</Text>
-							</TouchableHighlight>
+							<Text
+								onPress={() => {
+									this.setState(() => {
+										return { isProfile: true }
+									}, () => this.actionSheet.show());
+								}}
+								style={{ color: colors.blue, fontSize: 12, fontWeight: 'bold', padding: 5 }}>
+								Change Profile Picture
+							</Text>
+
+							<Text
+								onPress={() => {
+									this.setState(() => {
+										return { isProfile: false }
+									}, () => this.actionSheet.show());
+								}}
+								style={{ color: colors.blue, fontSize: 12, fontWeight: 'bold', marginBottom: 5, padding: 5 }}>
+								Change Background Picture
+							</Text>
 
 							<View style={styles.row}>
 								<View style={styles.label}>
@@ -164,21 +233,23 @@ class Settings extends Component {
 								</TouchableHighlight>
 							</View>
 
-							{
-								valid ?
-									<TouchableHighlight
-										onPress={() => { }}
-										style={[styles.button, styles.save]}>
-										<Text style={[styles.saveText, { color: colors.blue }]}>
-											Save Changes
-										</Text>
-									</TouchableHighlight> :
-									<View style={[styles.button, styles.save, { borderWidth: 0 }]}>
-										<Text style={[styles.saveText, { color: colors.lightGray }]}>
-											Save Changes
-										</Text>
-									</View>
-							}
+							<View style={styles.row}>
+								<View style={[styles.label, { flex: 3 }]}>
+									<Text style={{ color: colors.darkGray, fontWeight: 'bold' }}>
+										Location Services
+									</Text>
+								</View>
+								<TouchableHighlight
+									onPress={() => this.setState({ location: this.state.location ? false : true })}
+									style={[
+										styles.toggle,
+										{ backgroundColor: this.state.location ? colors.green : colors.darkGray }
+									]}>
+									<Text style={{ color: 'white' }}>
+										{this.state.location ? 'On' : 'Off'}
+									</Text>
+								</TouchableHighlight>
+							</View>
 
 							<TouchableHighlight
 								onPress={this.props.settingsPassword}
@@ -199,6 +270,24 @@ class Settings extends Component {
 						</View>
 					</KeyboardAwareScrollView>
 				</View>
+
+				{/* ActionSheet for picture */}
+				<ActionSheet
+					ref={ref => this.actionSheet = ref}
+					title={`How would you like to set your ${this.state.isProfile ? 'profile' : 'background'} picture?`}
+					options={['Cancel', 'Use Photo Library', 'Use Camera']}
+					cancelButtonIndex={0}
+					onPress={index => {
+						switch (index) {
+							case 1:
+								this.openPicker();
+								break;
+							case 2:
+								this.openCamera();
+								break;
+							default:
+						}
+					}} />
 
 			</View>
 		);
@@ -231,17 +320,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		marginHorizontal: 20,
 		marginVertical: 5
-	},
-	save: {
-		backgroundColor: 'white',
-		borderColor: colors.blue,
-		borderWidth: 1,
-		flex: 1
-	},
-	saveText: {
-		flex: 1,
-		fontWeight: 'bold',
-		textAlign: 'center'
 	},
 	toggle: {
 		alignItems: 'center',

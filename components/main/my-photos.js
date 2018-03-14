@@ -100,11 +100,6 @@ class MyPhotos extends Component {
 				this.setState({ visible: true });
 				break;
 			case 2:
-				// this.http,
-				break;
-			case 3:
-				break;
-			case 4:
 				const _data = this.state.data.slice();
 				_data.splice(this.state.selected, 1);
 				this.setState({ data: _data });
@@ -115,12 +110,15 @@ class MyPhotos extends Component {
 
 	openCamera = () => {
 		ImagePicker.openCamera({ mediaType: 'photo' })
-			.then(image => this.setState({ path: image.path }))
-			.catch(() => { });
+			.then(image => {
+				const _data = this.state.data.slice();
+				_data.push(image.path);
+				this.setState({ data: _data })
+			}).catch(() => { });
 	}
 
 	openPicker = () => {
-		ImagePicker.openPicker({})
+		ImagePicker.openPicker({ mediaType: 'photo' })
 			.then(image => {
 				const _data = this.state.data.slice();
 				_data.push(image.path);
@@ -142,7 +140,7 @@ class MyPhotos extends Component {
 							My Photos
 						</Text>
 					</View>
-					<View style={{ flex: 1 }}>
+					<View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
 						{
 							this.state.data.length < 6 &&
 							<Icon
@@ -162,13 +160,13 @@ class MyPhotos extends Component {
 				{/* ActionSheet for current photos */}
 				<ActionSheet
 					cancelButtonIndex={0}
-					destructiveButtonIndex={4}
+					destructiveButtonIndex={2}
 					onPress={this.handleAction}
 					options={[
 						'Cancel',
 						'View Picture',
-						'Set as Profile Picture',
-						'Set as Profile Background',
+						// 'Set as Profile Picture',
+						// 'Set as Profile Background',
 						'Delete'
 					]}
 					ref={ref => this.actionSheet = ref}
@@ -177,6 +175,7 @@ class MyPhotos extends Component {
 				{/* ActionSheet for new photos */}
 				<ActionSheet
 					cancelButtonIndex={0}
+					message={"Note: you may only have a total of 6 photos."}
 					onPress={index => {
 						switch (index) {
 							case 1:

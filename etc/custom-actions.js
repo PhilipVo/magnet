@@ -7,18 +7,21 @@ import { colors } from './constants';
 
 export default class CustomActions extends React.Component {
 	openCamera = () => {
-		ImagePicker.openCamera({ mediaType: 'photo' })
-			.then(image => this.props.onSend([{ image: image.path }]))
+		ImagePicker.openCamera({
+			mediaType: 'photo'
+		}).then(image => this.props.onSend([{ image: image.path }]))
 			.catch(() => { });
 	}
 
 	openPicker = () => {
-		ImagePicker.openPicker({ mediaType: 'photo', multiple: true })
-			.then(images => {
-				this.props.onSend(images.map(image => {
-					return { image: image.path };
-				}));
-			}).catch(() => { });
+		ImagePicker.openPicker({
+			mediaType: 'photo',
+			multiple: true
+		}).then(images => {
+			this.props.onSend(images.map(image => {
+				return { image: image.path };
+			}));
+		}).catch(() => { });
 	}
 
 	render() {
