@@ -170,7 +170,7 @@ class Login extends Component {
 								<LinearGradient
 									colors={[colors.lightGreen, colors.darkGreen]}
 									style={{ flex: 1, flexDirection: 'row', padding: 10 }}>
-									<Text style={{ color: 'white', flex: 1, fontWeight: 'bold', textAlign: 'center' }}>
+									<Text style={{ color: 'white', flex: 1, textAlign: 'center' }}>
 										{this.state.mode === 'register' ? 'Create Account' : 'Login'}
 									</Text>
 								</LinearGradient>
@@ -209,7 +209,7 @@ class Login extends Component {
 							<TouchableHighlight
 								onPress={this.facebookLogin}
 								style={{ backgroundColor: '#3b5998', flexDirection: 'row', marginVertical: 5, padding: 10 }}>
-								<Text style={{ color: 'white', flex: 1, fontWeight: 'bold', textAlign: 'center' }}>
+								<Text style={{ color: 'white', flex: 1, textAlign: 'center' }}>
 									Continue with Facebook
 								</Text>
 							</TouchableHighlight>

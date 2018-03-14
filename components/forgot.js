@@ -61,7 +61,7 @@ class Forgot extends Component {
 							<LinearGradient
 								colors={[colors.lightGreen, colors.darkGreen]}
 								style={{ flex: 1, flexDirection: 'row', padding: 10 }}>
-								<Text style={{ color: 'white', flex: 1, fontWeight: 'bold', textAlign: 'center' }}>
+								<Text style={{ color: 'white', flex: 1, textAlign: 'center' }}>
 									{this.state.sent ? 'New Password Sent!' : 'Request New Password'}
 								</Text>
 							</LinearGradient>
