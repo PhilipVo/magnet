@@ -67,19 +67,18 @@ const styles = StyleSheet.create({
 		marginRight: 2
 	},
 	textInput: {
-		alignSelf: 'center',
 		flex: 1,
-		// fontSize: 16,
-		// lineHeight: 16,
+		fontSize: 16,
+		lineHeight: 16,
 		marginHorizontal: 10,
-		// marginTop: Platform.select({
-		// 	ios: 6,
-		// 	android: 0,
-		// }),
-		// marginBottom: Platform.select({
-		// 	ios: 5,
-		// 	android: 3,
-		// }),
+		marginTop: Platform.select({
+			ios: 6,
+			android: 0,
+		}),
+		marginBottom: Platform.select({
+			ios: 5,
+			android: 3,
+		}),
 	},
 });
 
